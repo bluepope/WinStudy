@@ -37,7 +37,7 @@ namespace WpfMvvm
             //image1.Source = new BitmapImage(new Uri("/Images/18.jpg", UriKind.Relative));
             this.ViewModel.Text1 = new Random().Next().ToString();
             this.ViewModel.Num1 = new Random().Next(100);
-            this.ViewModel.Num2 = new Random().Next(100);
+            this.ViewModel.Num2 = new Random(this.ViewModel.Num1).Next(100);
         }
     }
 }

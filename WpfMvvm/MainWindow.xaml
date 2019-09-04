@@ -7,13 +7,25 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="800" Width="1200">
     <Grid>
-        <PasswordBox HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top"  Width="120" Height="22"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" Text="{Binding Text1}" VerticalAlignment="Top" Width="120"/>
+        <Label Content="포커스아웃" HorizontalAlignment="Left" Height="27" Margin="28,8,0,0" VerticalAlignment="Top" Width="74"/>
+        <TextBox HorizontalAlignment="Left" Height="25" Margin="107,10,0,0" TextWrapping="Wrap" Text="{Binding Path=Text1 }" VerticalAlignment="Top" Width="120"/>
+
+        <Label Content="키입력" HorizontalAlignment="Left" Height="27" Margin="28,38,0,0" VerticalAlignment="Top" Width="74"/>
+        <!--명시적인 업데이트 지정-->
+        <TextBox HorizontalAlignment="Left" Height="27" Margin="107,38,0,0" TextWrapping="Wrap" Text="{Binding Path=Text1, UpdateSourceTrigger=PropertyChanged}"  VerticalAlignment="Top" Width="120" />
 
         <ProgressBar HorizontalAlignment="Left" Height="25" Margin="10,84,0,0" VerticalAlignment="Top" Width="357" Value="{Binding Num1}" />
 
         <Slider HorizontalAlignment="Left" Height="29" Margin="10,136,0,0" VerticalAlignment="Top" Width="362" Value="{Binding Num2}" Minimum="0" Maximum="100" />
-        <TextBlock HorizontalAlignment="Left" Height="50" Margin="282,10,0,0" TextWrapping="Wrap" Text="{Binding Text1}" VerticalAlignment="Top" Width="138"/>
+        <TextBlock HorizontalAlignment="Left" Height="50" Margin="282,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="138">
+            <TextBlock.Text>
+                <MultiBinding StringFormat="{}{0}&#x0a;{1}&#x0a;{2}">
+                    <Binding Path="Text1"></Binding>
+                    <Binding Path="Num1"></Binding>
+                    <Binding Path="Num2"></Binding>
+                </MultiBinding>
+            </TextBlock.Text>
+        </TextBlock>
         <Image Name="image1" HorizontalAlignment="Left" Height="110" Margin="10,199,0,0" VerticalAlignment="Top" Width="243"/>
 
         <Button Content="랜덤값 생성" HorizontalAlignment="Left" Height="67" Margin="596,74,0,0" VerticalAlignment="Top" Width="83" Click="Button_Click"/>
