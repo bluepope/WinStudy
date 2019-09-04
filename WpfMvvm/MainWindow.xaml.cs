@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfMvvm.ViewModels;
 
 namespace WpfMvvm
 {
@@ -20,9 +21,23 @@ namespace WpfMvvm
     /// </summary>
     public partial class MainWindow : Window
     {
+        VMTest1 ViewModel { get; set; }
+
         public MainWindow()
         {
             InitializeComponent();
+
+            this.ViewModel = new VMTest1();
+            this.DataContext = this.ViewModel;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            //frame1.Navigate("test");
+            //image1.Source = new BitmapImage(new Uri("/Images/18.jpg", UriKind.Relative));
+            this.ViewModel.Text1 = new Random().Next().ToString();
+            this.ViewModel.Num1 = new Random().Next(100);
+            this.ViewModel.Num2 = new Random().Next(100);
         }
     }
 }

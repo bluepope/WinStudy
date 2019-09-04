@@ -5,8 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfMvvm"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="800" Width="1200">
     <Grid>
-        
+        <PasswordBox HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top"  Width="120" Height="22"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" Text="{Binding Text1}" VerticalAlignment="Top" Width="120"/>
+
+        <ProgressBar HorizontalAlignment="Left" Height="25" Margin="10,84,0,0" VerticalAlignment="Top" Width="357" Value="{Binding Num1}" />
+
+        <Slider HorizontalAlignment="Left" Height="29" Margin="10,136,0,0" VerticalAlignment="Top" Width="362" Value="{Binding Num2}" Minimum="0" Maximum="100" />
+        <TextBlock HorizontalAlignment="Left" Height="50" Margin="282,10,0,0" TextWrapping="Wrap" Text="{Binding Text1}" VerticalAlignment="Top" Width="138"/>
+        <Image Name="image1" HorizontalAlignment="Left" Height="110" Margin="10,199,0,0" VerticalAlignment="Top" Width="243"/>
+
+        <Button Content="랜덤값 생성" HorizontalAlignment="Left" Height="67" Margin="596,74,0,0" VerticalAlignment="Top" Width="83" Click="Button_Click"/>
+
+        <Frame Name="frame1" Source="/Page1.xaml" HorizontalAlignment="Left" Height="427" Margin="63,261,0,0" VerticalAlignment="Top" Width="960"/>
     </Grid>
 </Window>
