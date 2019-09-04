@@ -16,7 +16,8 @@
 
         <ProgressBar HorizontalAlignment="Left" Height="25" Margin="10,84,0,0" VerticalAlignment="Top" Width="357" Value="{Binding Num1}" />
 
-        <Slider HorizontalAlignment="Left" Height="29" Margin="10,136,0,0" VerticalAlignment="Top" Width="362" Value="{Binding Num2}" Minimum="0" Maximum="100" />
+        <ProgressBar HorizontalAlignment="Left" Height="25" Margin="10,169,0,0" VerticalAlignment="Top" Width="357" Value="{Binding Num2}" />
+        <Slider HorizontalAlignment="Left" Height="40" Margin="10,136,0,0" VerticalAlignment="Top" Width="357" Value="{Binding Num2}" Minimum="0" Maximum="100" TickPlacement="BottomRight" TickFrequency="5" />
         <TextBlock HorizontalAlignment="Left" Height="50" Margin="282,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="138">
             <TextBlock.Text>
                 <MultiBinding StringFormat="{}{0}&#x0a;{1}&#x0a;{2}">
@@ -29,9 +30,10 @@
         <Image Name="image1" HorizontalAlignment="Left" Height="110" Margin="10,199,0,0" VerticalAlignment="Top" Width="243"/>
 
         <Button Content="랜덤값 생성" HorizontalAlignment="Left" Height="67" Margin="596,74,0,0" VerticalAlignment="Top" Width="83" Command="{Binding Button1Command}" >
-            
+
         </Button>
 
         <Frame Name="frame1" Source="/Page1.xaml" HorizontalAlignment="Left" Height="427" Margin="63,261,0,0" VerticalAlignment="Top" Width="960"/>
+        <TextBox HorizontalAlignment="Left" Height="27" Margin="559,38,0,0" TextWrapping="Wrap" Text="{Binding Text2, UpdateSourceTrigger=PropertyChanged}"  VerticalAlignment="Top" Width="120" />
     </Grid>
 </Window>

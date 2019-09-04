@@ -16,26 +16,28 @@ namespace WpfMvvm.ViewModels
     class VMTest1
     {
         public string Text1 { get; set; }
+        public string Text2 { get; set; }
         public int Num1 { get; set; } = 20;
 
         public int Num2 { get; set; } = 10;
 
-        public DelegateCommand<string> Button1Command { get; set; }
+        public DelegateCommand<string> Button1Command { get; set; } = new DelegateCommand<string>();
 
 
         public VMTest1()
         {
-            Button1Command = new DelegateCommand<string>();
-
             Button1Command.CanExecuteTargets += () =>
             {
-                return true;
+                if (Text1 == "111")
+                    return true;
+
+                return false;
             };
 
             Button1Command.ExecuteTargets += (s) =>
             {
                 //image1.Source = new BitmapImage(new Uri("/Images/18.jpg", UriKind.Relative));
-                Text1 = new Random().Next().ToString();
+                Text1 = this.Text2;
                 Num1 = new Random().Next(100);
                 Num2 = new Random(Num1).Next(100);
             };
