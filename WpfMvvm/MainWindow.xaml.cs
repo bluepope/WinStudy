@@ -30,14 +30,5 @@ namespace WpfMvvm
             this.ViewModel = new VMTest1();
             this.DataContext = this.ViewModel;
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            //frame1.Navigate("test");
-            //image1.Source = new BitmapImage(new Uri("/Images/18.jpg", UriKind.Relative));
-            this.ViewModel.Text1 = new Random().Next().ToString();
-            this.ViewModel.Num1 = new Random().Next(100);
-            this.ViewModel.Num2 = new Random(this.ViewModel.Num1).Next(100);
-        }
     }
 }

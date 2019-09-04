@@ -28,7 +28,9 @@
         </TextBlock>
         <Image Name="image1" HorizontalAlignment="Left" Height="110" Margin="10,199,0,0" VerticalAlignment="Top" Width="243"/>
 
-        <Button Content="랜덤값 생성" HorizontalAlignment="Left" Height="67" Margin="596,74,0,0" VerticalAlignment="Top" Width="83" Click="Button_Click"/>
+        <Button Content="랜덤값 생성" HorizontalAlignment="Left" Height="67" Margin="596,74,0,0" VerticalAlignment="Top" Width="83" Command="{Binding Button1Command}" >
+            
+        </Button>
 
         <Frame Name="frame1" Source="/Page1.xaml" HorizontalAlignment="Left" Height="427" Margin="63,261,0,0" VerticalAlignment="Top" Width="960"/>
     </Grid>
