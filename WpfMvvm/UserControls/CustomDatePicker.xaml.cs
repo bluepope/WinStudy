@@ -27,10 +27,12 @@ namespace WpfMvvm.UserControls
             set => SetValue(DateTimeValueProperty, value);
         }
 
-
         public CustomDatePicker()
         {
             InitializeComponent();
         }
+
+        //최초 바인딩은 잘되나
+        //UserControl에 데이터 선택시 바인딩이 풀리는 문제 발생
     }
 }

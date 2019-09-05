@@ -4,10 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfMvvm.UserControls"
+             x:Name="uc"
              mc:Ignorable="d" 
              d:DesignHeight="100" d:DesignWidth="200">
     <Grid>
-        <DatePicker SelectedDate="{Binding DateTimeValue}" VerticalAlignment="Top" Height="30" />
-        <TextBlock Text="{Binding DateTimeValue}" Margin="0,30,0,0"/>
+        <DatePicker SelectedDate="{Binding DateTimeValue, ElementName=uc}" VerticalAlignment="Top" Height="30" />
+        <TextBlock Text="{Binding DateTimeValue, ElementName=uc}" Margin="0,30,0,0"/>
     </Grid>
 </UserControl>

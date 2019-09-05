@@ -42,7 +42,6 @@ namespace WpfMvvm.ViewModels
 
             Button1Command.ExecuteTargets += (s) =>
             {
-                //image1.Source = new BitmapImage(new Uri("/Images/18.jpg", UriKind.Relative));
                 Text1 = new Random().Next().ToString();
                 Num1 = new Random().Next(100);
                 Num2 = new Random(Num1).Next(100);
@@ -52,6 +51,8 @@ namespace WpfMvvm.ViewModels
             List1.Add(new KeyValuePair<string, string>("bbb", "222"));
             List1.Add(new KeyValuePair<string, string>("ccc", "333"));
             List1.Add(new KeyValuePair<string, string>("ddd", "444"));
+
+            List1SelectedValue = "222";
         }
     }
 }

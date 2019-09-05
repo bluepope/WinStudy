@@ -21,14 +21,11 @@ namespace WpfMvvm
     /// </summary>
     public partial class MainWindow : Window
     {
-        VMTest1 ViewModel { get; set; }
-
         public MainWindow()
         {
             InitializeComponent();
 
-            this.ViewModel = new VMTest1();
-            this.DataContext = this.ViewModel;
+            this.DataContext = new VMTest1();
         }
     }
 }
