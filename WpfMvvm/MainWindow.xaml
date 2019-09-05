@@ -4,90 +4,105 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfMvvm"
+        xmlns:converter="clr-namespace:WpfMvvm.Converters"
         xmlns:UserControls="clr-namespace:WpfMvvm.UserControls"
         mc:Ignorable="d"
         x:Class="WpfMvvm.MainWindow"
-        Title="MainWindow" Height="660" Width="770">
+        Title="MainWindow" Height="800" Width="766">
     <Window.Resources>
-        <local:DateTimeToStringConverter x:Key="dateTimeToStringConverter"/>
-        <local:StringToDateTimeConverter x:Key="stringToDateTimeConverter"/>
+        <converter:DateTimeToStringConverter x:Key="dateTimeToStringConverter"/>
+        <converter:StringToDateTimeConverter x:Key="stringToDateTimeConverter"/>
     </Window.Resources>
-    <Grid>
-        <Frame x:Name="frame1" Source="/Page1.xaml" HorizontalAlignment="Left" Height="208" Margin="28,513,0,0" VerticalAlignment="Top" Width="351"/>
-        <GroupBox Header="Text" HorizontalAlignment="Left" Height="114" Margin="17,17,0,0" VerticalAlignment="Top" Width="237">
-            <Grid>
-                <Label Content="포커스아웃" HorizontalAlignment="Left" Height="27" Margin="16,15,0,0" VerticalAlignment="Top" Width="74"/>
-                <TextBox HorizontalAlignment="Left" Height="25" Margin="95,17,0,0" TextWrapping="Wrap" Text="{Binding Text1}" VerticalAlignment="Top" Width="120"/>
-                <Label Content="키입력" HorizontalAlignment="Left" Height="27" Margin="16,45,0,0" VerticalAlignment="Top" Width="74"/>
-                <TextBox HorizontalAlignment="Left" Height="27" Margin="95,45,0,0" TextWrapping="Wrap" Text="{Binding Text1, UpdateSourceTrigger=PropertyChanged}"  VerticalAlignment="Top" Width="120" />
-            </Grid>
-        </GroupBox>
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <Grid>
+            <Frame x:Name="frame1" Source="/Page1.xaml" HorizontalAlignment="Left" Height="208" Margin="28,513,0,0" VerticalAlignment="Top" Width="351"/>
+            <GroupBox Header="Text" HorizontalAlignment="Left" Height="114" Margin="17,17,0,0" VerticalAlignment="Top" Width="237">
+                <Grid>
+                    <Label Content="포커스아웃" HorizontalAlignment="Left" Height="27" Margin="16,15,0,0" VerticalAlignment="Top" Width="74"/>
+                    <TextBox HorizontalAlignment="Left" Height="25" Margin="95,17,0,0" TextWrapping="Wrap" Text="{Binding Text1}" VerticalAlignment="Top" Width="120"/>
+                    <Label Content="키입력" HorizontalAlignment="Left" Height="27" Margin="16,45,0,0" VerticalAlignment="Top" Width="74"/>
+                    <TextBox HorizontalAlignment="Left" Height="27" Margin="95,45,0,0" TextWrapping="Wrap" Text="{Binding Text1, UpdateSourceTrigger=PropertyChanged}"  VerticalAlignment="Top" Width="120" />
+                </Grid>
+            </GroupBox>
 
-        <GroupBox Header="Num" HorizontalAlignment="Left" Height="114" Margin="278,17,0,0" VerticalAlignment="Top" Width="237">
-            <Grid>
-                <Label Content="1" HorizontalAlignment="Left" Height="27" Margin="10,12,0,0" VerticalAlignment="Top" Width="34"/>
-                <ProgressBar HorizontalAlignment="Left" Height="25" Margin="49,10,0,0" VerticalAlignment="Top" Width="176" Value="{Binding Num1}" />
+            <GroupBox Header="Num" HorizontalAlignment="Left" Height="114" Margin="278,17,0,0" VerticalAlignment="Top" Width="237">
+                <Grid>
+                    <Label Content="1" HorizontalAlignment="Left" Height="27" Margin="10,12,0,0" VerticalAlignment="Top" Width="34"/>
+                    <Grid HorizontalAlignment="Left" Height="25" Margin="49,10,0,0" VerticalAlignment="Top" Width="176" >
+                        <ProgressBar Value="{Binding Num1}" BorderBrush="#FF41F078" Background="White" >
+                            <ProgressBar.Foreground>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#FFA6F3AA"/>
+                                    <GradientStop Color="#FF15F11F" Offset="1"/>
+                                </LinearGradientBrush>
+                            </ProgressBar.Foreground>
+                        </ProgressBar>
+                        <Label Content="{Binding Num1}" HorizontalAlignment="Center"></Label>
+                    </Grid>
 
-                <Label Content="2" HorizontalAlignment="Left" Height="27" Margin="10,39,0,0" VerticalAlignment="Top" Width="34"/>
-                <Slider Height="29" Margin="49,44,0,0" VerticalAlignment="Top" Value="{Binding Num2}" Minimum="0" Maximum="100" HorizontalAlignment="Left" Width="176" />
-            </Grid>
-        </GroupBox>
 
-        <GroupBox Header="Check" HorizontalAlignment="Left" Height="77" Margin="17,148,0,0" VerticalAlignment="Top" Width="217">
-            <Grid>
-                <RadioButton Content="Check1" HorizontalAlignment="Left" Margin="6,10,0,0" VerticalAlignment="Top" IsChecked="{Binding Check1}" />
-                <RadioButton Content="Check2" HorizontalAlignment="Left" Margin="109,10,0,0" VerticalAlignment="Top"  IsChecked="{Binding Check2}" />
-                <CheckBox Content="Check1" HorizontalAlignment="Left" Margin="6,30,0,0" VerticalAlignment="Top" IsChecked="{Binding Check1}" />
-            </Grid>
-        </GroupBox>
+                    <Label Content="2" HorizontalAlignment="Left" Height="27" Margin="10,39,0,0" VerticalAlignment="Top" Width="34"/>
+                    <Slider TickFrequency="10" TickPlacement="BottomRight" Height="29" Margin="49,44,0,0" VerticalAlignment="Top" Value="{Binding Num2}" Minimum="0" Maximum="100" HorizontalAlignment="Left" Width="176" />
+                </Grid>
+            </GroupBox>
 
-        <GroupBox Header="List" HorizontalAlignment="Left" Height="77" Margin="283,148,0,0" VerticalAlignment="Top" Width="217">
-            <Grid>
-                <ComboBox HorizontalAlignment="Left" Margin="25,10,0,0" VerticalAlignment="Top" Width="161" ItemsSource="{Binding List1}" DisplayMemberPath="Key" SelectedValuePath="Value" SelectedValue="{Binding List1SelectedValue}" />
-            </Grid>
-        </GroupBox>
+            <GroupBox Header="Check" HorizontalAlignment="Left" Height="77" Margin="17,148,0,0" VerticalAlignment="Top" Width="217">
+                <Grid>
+                    <RadioButton Content="Check1" HorizontalAlignment="Left" Margin="6,10,0,0" VerticalAlignment="Top" IsChecked="{Binding Check1}" />
+                    <RadioButton Content="Check2" HorizontalAlignment="Left" Margin="109,10,0,0" VerticalAlignment="Top"  IsChecked="{Binding Check2}" />
+                    <CheckBox Content="Check1" HorizontalAlignment="Left" Margin="6,30,0,0" VerticalAlignment="Top" IsChecked="{Binding Check1}" />
+                </Grid>
+            </GroupBox>
 
-        <GroupBox Header="DatePicker" HorizontalAlignment="Left" Height="108" Margin="17,248,0,0" VerticalAlignment="Top" Width="498">
-            <Grid>
-                <TextBlock HorizontalAlignment="Left" Height="21" Margin="0,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="86" Text="DateTime1" />
-                <DatePicker HorizontalAlignment="Left" Margin="100,14,0,0" VerticalAlignment="Top" Width="145" SelectedDate="{Binding DateTime1}" />
-                <TextBlock HorizontalAlignment="Left" Height="21" Margin="250,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="86" Text="Value" />
-                <TextBlock HorizontalAlignment="Left" Margin="300,14,0,0" TextWrapping="Wrap" Text="{Binding DateTime1, Converter={StaticResource dateTimeToStringConverter}}" VerticalAlignment="Top" Height="24" Width="126"/>
+            <GroupBox Header="List" HorizontalAlignment="Left" Height="77" Margin="283,148,0,0" VerticalAlignment="Top" Width="217">
+                <Grid>
+                    <ComboBox HorizontalAlignment="Left" Margin="25,10,0,0" VerticalAlignment="Top" Width="161" ItemsSource="{Binding List1}" DisplayMemberPath="Key" SelectedValuePath="Value" SelectedValue="{Binding List1SelectedValue}" />
+                </Grid>
+            </GroupBox>
 
-                <TextBlock HorizontalAlignment="Left" Height="21" Margin="0,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="86" Text="DateText1" />
-                <DatePicker HorizontalAlignment="Left" Margin="100,41,0,0" VerticalAlignment="Top" Width="145" SelectedDate="{Binding DateText1, ConverterParameter=yyyyMMdd, Converter={StaticResource stringToDateTimeConverter}}" />
-                <TextBlock HorizontalAlignment="Left" Height="21" Margin="250,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="86" Text="Value" />
-                <TextBlock HorizontalAlignment="Left" Margin="300,41,0,0" TextWrapping="Wrap" Text="{Binding DateText1}" VerticalAlignment="Top" Height="24" Width="126"/>
+            <GroupBox Header="DatePicker" HorizontalAlignment="Left" Height="108" Margin="17,248,0,0" VerticalAlignment="Top" Width="498">
+                <Grid>
+                    <TextBlock HorizontalAlignment="Left" Height="21" Margin="0,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="86" Text="DateTime1" />
+                    <DatePicker HorizontalAlignment="Left" Margin="100,14,0,0" VerticalAlignment="Top" Width="145" SelectedDate="{Binding DateTime1}" />
+                    <TextBlock HorizontalAlignment="Left" Height="21" Margin="250,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="86" Text="Value" />
+                    <TextBlock HorizontalAlignment="Left" Margin="300,14,0,0" TextWrapping="Wrap" Text="{Binding DateTime1, Converter={StaticResource dateTimeToStringConverter}}" VerticalAlignment="Top" Height="24" Width="126"/>
 
-            </Grid>
-        </GroupBox>
+                    <TextBlock HorizontalAlignment="Left" Height="21" Margin="0,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="86" Text="DateText1" />
+                    <DatePicker HorizontalAlignment="Left" Margin="100,41,0,0" VerticalAlignment="Top" Width="145" SelectedDate="{Binding DateText1, ConverterParameter=yyyyMMdd, Converter={StaticResource stringToDateTimeConverter}}" />
+                    <TextBlock HorizontalAlignment="Left" Height="21" Margin="250,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="86" Text="Value" />
+                    <TextBlock HorizontalAlignment="Left" Margin="300,41,0,0" TextWrapping="Wrap" Text="{Binding DateText1}" VerticalAlignment="Top" Height="24" Width="126"/>
 
-        <Button Content="랜덤값 생성" HorizontalAlignment="Left" Height="67" Margin="602,64,0,0" VerticalAlignment="Top" Width="83" Command="{Binding Button1Command}" />
-        <Border BorderThickness="1" BorderBrush="Red" Margin="538,180,10,48" >
-            <Grid>
-                <Label Content="생성값" HorizontalAlignment="Left" Height="27" Margin="0,0,0,0" VerticalAlignment="Top" Width="76"/>
-                <TextBlock Margin="10,35,0,166" TextWrapping="Wrap" HorizontalAlignment="Left" Width="192" Height="183" VerticalAlignment="Top">
-                    <TextBlock.Text>
-                        <MultiBinding StringFormat="{}Text1: {0}&#xA;Num1: {1}&#xA;Num2: {2}&#xA;Check1: {3}&#xA;Check2: {4}&#xA;List1SelectedValue: {5}&#xA;DateTime1: {6:yyyy-MM-dd}&#xA;DateText1: {7}">
-                            <Binding Path="Text1"/>
-                            <Binding Path="Num1"/>
-                            <Binding Path="Num2"/>
-                            <Binding Path="Check1"/>
-                            <Binding Path="Check2"/>
-                            <Binding Path="List1SelectedValue"/>
-                            <Binding Path="DateTime1"/>
-                            <Binding Path="DateText1"/>
-                        </MultiBinding>
-                    </TextBlock.Text>
-                </TextBlock>
-            </Grid>
-        </Border>
-        <GroupBox Header="UserControl" HorizontalAlignment="Left" Height="106" Margin="17,371,0,0" VerticalAlignment="Top" Width="498">
-            <Grid>
-                <UserControls:CustomDatePicker HorizontalAlignment="Left" Height="55"  VerticalAlignment="Top" Width="141" DateTimeValue="{Binding DateTime1}" Margin="104,10,0,0" />
-                <TextBlock HorizontalAlignment="Left" Height="21" Margin="0,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="86" Text="DateTime1" />
-            </Grid>
-        </GroupBox>
+                </Grid>
+            </GroupBox>
 
-    </Grid>
+            <Button Content="랜덤값 생성" HorizontalAlignment="Left" Height="67" Margin="602,64,0,0" VerticalAlignment="Top" Width="83" Command="{Binding Button1Command}" />
+            <Border BorderThickness="1" HorizontalAlignment="Left" VerticalAlignment="Top" BorderBrush="Red" Margin="538,148,10,173" Width="200" Height="400">
+                <Grid>
+                    <Label Content="생성값" HorizontalAlignment="Left" Height="27" Margin="0,0,0,0" VerticalAlignment="Top" Width="76"/>
+                    <TextBlock Margin="10,35,0,166" TextWrapping="Wrap" HorizontalAlignment="Left" Width="192" Height="183" VerticalAlignment="Top">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}Text1: {0}&#xA;Num1: {1}&#xA;Num2: {2}&#xA;Check1: {3}&#xA;Check2: {4}&#xA;List1SelectedValue: {5}&#xA;DateTime1: {6:yyyy-MM-dd}&#xA;DateText1: {7}">
+                                <Binding Path="Text1"/>
+                                <Binding Path="Num1"/>
+                                <Binding Path="Num2"/>
+                                <Binding Path="Check1"/>
+                                <Binding Path="Check2"/>
+                                <Binding Path="List1SelectedValue"/>
+                                <Binding Path="DateTime1"/>
+                                <Binding Path="DateText1"/>
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </Grid>
+            </Border>
+            <GroupBox Header="UserControl" HorizontalAlignment="Left" Height="123" Margin="17,371,0,0" VerticalAlignment="Top" Width="498">
+                <Grid>
+                    <TextBlock HorizontalAlignment="Left" Height="21" Margin="0,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="69" Text="DateTime1" />
+                    <UserControls:CustomDatePicker HorizontalAlignment="Left" Height="55"  VerticalAlignment="Top" Width="141" Value="{Binding DateTime1}" Margin="69,14,0,0" />
+                    <TextBlock HorizontalAlignment="Left" Height="21" Margin="237,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="58" Text="DateText1" />
+                    <UserControls:TextDatePicker HorizontalAlignment="Left" Height="59" Margin="300,10,0,0" VerticalAlignment="Top" Width="176" Value="{Binding DateText1}" Format="yyyyMMdd" />
+                </Grid>
+            </GroupBox>
+        </Grid>
+    </ScrollViewer>
 </Window>

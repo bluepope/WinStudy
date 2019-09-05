@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,19 +21,17 @@ namespace WpfMvvm.UserControls
     /// </summary>
     public partial class CustomDatePicker : UserControl
     {
-        public static readonly DependencyProperty DateTimeValueProperty = DependencyProperty.Register("DateTimeValue", typeof(DateTime), typeof(CustomDatePicker));
-        public DateTime DateTimeValue
+        public static readonly DependencyProperty ValueProperty = DependencyProperty.Register("Value", typeof(DateTime), typeof(CustomDatePicker), new FrameworkPropertyMetadata(DateTime.Now, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+
+        public DateTime Value
         {
-            get => (DateTime)GetValue(DateTimeValueProperty);
-            set => SetValue(DateTimeValueProperty, value);
+            get => (DateTime)GetValue(ValueProperty);
+            set => SetValue(ValueProperty, value);
         }
 
         public CustomDatePicker()
         {
             InitializeComponent();
         }
-
-        //최초 바인딩은 잘되나
-        //UserControl에 데이터 선택시 바인딩이 풀리는 문제 발생
     }
 }
