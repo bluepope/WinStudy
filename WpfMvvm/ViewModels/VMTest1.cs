@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using WpfMvvm.Models;
 
 namespace WpfMvvm.ViewModels
 {
@@ -30,8 +31,9 @@ namespace WpfMvvm.ViewModels
 
         public List<KeyValuePair<string, string>> List1 { get; set; } = new List<KeyValuePair<string, string>>();
 
-        public DelegateCommand Button1Command { get; set; } = new DelegateCommand();
+        public List<MUser> UserList { get; set; }
 
+        public DelegateCommand Button1Command { get; set; } = new DelegateCommand();
 
         public VMTest1()
         {
@@ -43,6 +45,18 @@ namespace WpfMvvm.ViewModels
             List1.Add(new KeyValuePair<string, string>("ddd", "444"));
 
             List1SelectedValue = "222";
+
+            UserList = new List<MUser>();
+            UserList.Add(new MUser() { USER_ID = "a1", UNIQUE_SEQ = 1, REG_DATE = DateTime.Now.AddDays(-1) });
+            UserList.Add(new MUser() { USER_ID = "b2", NAME = "고길동", UNIQUE_SEQ = 2, REG_DATE = DateTime.Now.AddDays(-2) });
+            UserList.Add(new MUser() { USER_ID = "c3", NAME = "홍길홍", UNIQUE_SEQ = 3, REG_DATE = DateTime.Now.AddDays(-3) });
+            UserList.Add(new MUser() { USER_ID = "d4", NAME = "길길동", UNIQUE_SEQ = 4, REG_DATE = DateTime.Now.AddDays(-4) });
+            UserList.Add(new MUser() { USER_ID = "e5", NAME = "동길동", UNIQUE_SEQ = 5, REG_DATE = DateTime.Now.AddDays(-5) });
+
+            foreach(var item in UserList)
+            {
+                item.Initialize();
+            }
         }
 
         private void Button1Command_ExecuteTargets()

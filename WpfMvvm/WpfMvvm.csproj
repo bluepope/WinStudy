@@ -61,6 +61,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\MUser.cs" />
     <Compile Include="UserControls\TextDatePicker.xaml.cs">
       <DependentUpon>TextDatePicker.xaml</DependentUpon>
     </Compile>
