@@ -12,6 +12,7 @@
     <Window.Resources>
         <converter:DateTimeToStringConverter x:Key="dateTimeToStringConverter"/>
         <converter:StringToDateTimeConverter x:Key="stringToDateTimeConverter"/>
+        <converter:BoolInverterConverter x:Key="boolInverterConverter"/>
     </Window.Resources>
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
         <Grid>
@@ -45,11 +46,15 @@
                 </Grid>
             </GroupBox>
 
-            <GroupBox Header="Check" HorizontalAlignment="Left" Height="77" Margin="17,148,0,0" VerticalAlignment="Top" Width="217">
+            <GroupBox Header="Check" HorizontalAlignment="Left" Height="95" Margin="17,148,0,0" VerticalAlignment="Top" Width="217">
                 <Grid>
-                    <RadioButton Content="Check1" HorizontalAlignment="Left" Margin="6,10,0,0" VerticalAlignment="Top" IsChecked="{Binding Check1}" />
-                    <RadioButton Content="Check2" HorizontalAlignment="Left" Margin="109,10,0,0" VerticalAlignment="Top"  IsChecked="{Binding Check2}" />
-                    <CheckBox Content="Check1" HorizontalAlignment="Left" Margin="6,30,0,0" VerticalAlignment="Top" IsChecked="{Binding Check1}" />
+                    <RadioButton Content="Check1" HorizontalAlignment="Left" Margin="6,10,0,0" VerticalAlignment="Top" IsChecked="{Binding Check1}" GroupName="CheckRow1" />
+                    <RadioButton Content="Check2" HorizontalAlignment="Left" Margin="109,10,0,0" VerticalAlignment="Top"  IsChecked="{Binding Check2}"  GroupName="CheckRow1" />
+
+                    <RadioButton Content="Check1" HorizontalAlignment="Left" Margin="6,28,0,0" VerticalAlignment="Top" IsChecked="{Binding Check1}" GroupName="CheckRow2" />
+                    <RadioButton Content="Check1False" HorizontalAlignment="Left" Margin="109,31,0,0" VerticalAlignment="Top" IsChecked="{Binding Check1,  Converter={StaticResource boolInverterConverter}}" GroupName="CheckRow2" />
+
+                    <CheckBox Content="Check1" HorizontalAlignment="Left" Margin="6,48,0,0" VerticalAlignment="Top" IsChecked="{Binding Check1}" />
                 </Grid>
             </GroupBox>
 

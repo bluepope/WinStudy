@@ -61,6 +61,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Attributes\DoNotIsEditChangeAttribute.cs" />
+    <Compile Include="Converters\BoolInverterConverter.cs" />
+    <Compile Include="CustomControls\DataGridNumericColumn.cs" />
     <Compile Include="Models\MUser.cs" />
     <Compile Include="UserControls\TextDatePicker.xaml.cs">
       <DependentUpon>TextDatePicker.xaml</DependentUpon>
