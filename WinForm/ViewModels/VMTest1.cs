@@ -26,8 +26,6 @@ namespace WinForm.ViewModels
 
         public List<MUser> UserList { get; set; }
 
-        public MUser SelectedUser { get; set; }
-
         public VMTest1()
         {
             List1.Add(new KeyValuePair<string, string>("aaa", "111"));

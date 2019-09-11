@@ -34,43 +34,45 @@ namespace WinForm
             this.dataGridView1.Columns.Add(new DataGridViewTextBoxColumn() { Name = "이름", DataPropertyName = "NAME" });
             this.dataGridView1.Columns.Add(new DataGridViewTextBoxColumn() { Name = "고유번호", DataPropertyName = "UNIQUE_SEQ" });
             this.dataGridView1.Columns.Add(new DataGridViewTextBoxColumn() { Name = "생성일자", DataPropertyName = "REG_DATE" });
-
+           
             this.dataGridView1.DataSource = _viewModel.UserList;
-
-            textBox1.TextChanged += (s, evt) => {
-                dataGridView1.Refresh();
-            };
-
-            var binding = textBox1.DataBindings.Add("Text", _viewModel.SelectedUser, "UNIQUE_SEQ");
-            binding.ControlUpdateMode = ControlUpdateMode.OnPropertyChanged;
-            binding.DataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged;
+            
+            var bind = textBox1.DataBindings.Add("Text", _viewModel.UserList, "UNIQUE_SEQ", true, DataSourceUpdateMode.OnPropertyChanged);
+            bind.ControlUpdateMode = ControlUpdateMode.OnPropertyChanged;
+            bind.Parse += (s, evt) => dataGridView1.Refresh();
 
             textBox2.DataBindings.Add("Text", _viewModel, "Text1");
 
-            //dataGridView1.Rows.click
-
+            //실시간 업데이트에 대한 테스트
+            dataGridView1.EditingControlShowing += (s, evt) =>
+            {
+                evt.Control.KeyUp += (s2, evt2) =>
+                {
+                    var cell = (s as DataGridView).CurrentCell;
+                    _viewModel.UserList[cell.RowIndex].UNIQUE_SEQ = Convert.ToInt32((s2 as DataGridViewTextBoxEditingControl).Text);
+                    bind.ReadValue();
+                };
+            };
+                
+            
             Task.Run(() => {
                 for(int i=0; i < 100; i++)
                 {
-                    Thread.Sleep(1000);
+                    Thread.Sleep(100);
                     _viewModel.UserList[0].UNIQUE_SEQ = new Random().Next(100);
 
-                    this.Invoke(new Action(() => {
+                    dataGridView1.Invoke(new MethodInvoker(() => {
+                        bind.ReadValue();
                         dataGridView1.Refresh();
-                        //textBox1.Refresh();
                     }));
                 }
             });
-
-
-            // textBox1.DataBindings.Add("", _viewModel.UserList,  )
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             _viewModel.UserList[0].NAME = new Random().Next(100).ToString();
             dataGridView1.Refresh();
-            textBox1.Refresh();
         }
 
         private void button2_Click(object sender, EventArgs e)
