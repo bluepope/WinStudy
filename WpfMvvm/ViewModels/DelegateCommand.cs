@@ -1,22 +1,31 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace WpfMvvm.ViewModels
 {
     public class DelegateCommand<T> : ICommand
     {
-        public bool IsEnabled { get; set; } = true;
+        public bool IsExecuting { get; private set; } = false;
         Action<T> executeTargets = delegate { };
         Func<bool> canExecuteTargets = delegate { return false; };
 
         public bool CanExecute(object parameter)
         {
-            return IsEnabled && (canExecuteTargets.GetInvocationList().Length == 1 || (canExecuteTargets?.Invoke() ?? true));
+            return !IsExecuting && (canExecuteTargets.GetInvocationList().Length == 1 || (canExecuteTargets?.Invoke() ?? true));
         }
-        public void Execute(object parameter)
+        public async void Execute(object parameter)
         {
-            if (CanExecute(parameter) == true)
-                executeTargets(parameter != null ? (T)parameter : default(T));
+            if (CanExecute(parameter) == false)
+                return;
+
+            IsExecuting = true;
+            CommandManager.InvalidateRequerySuggested();
+
+            await Task.Run(() => executeTargets(parameter != null ? (T)parameter : default(T)));
+
+            IsExecuting = false;
+            CommandManager.InvalidateRequerySuggested();
         }
         public event EventHandler CanExecuteChanged
         {

@@ -70,19 +70,13 @@ namespace WpfMvvm.ViewModels
             Num2 = new Random(Num1).Next(100);
         }
 
-        private async void Button2Command_ExecuteTargets()
+        private void Button2Command_ExecuteTargets()
         {
-            Button2Command.IsEnabled = false;
-            await Task.Run(() =>
+            for (int i = 0; i <= 100; i++)
             {
-                for (int i = 0; i <= 100; i++)
-                {
-                    Num1 = i;
-                    Thread.Sleep(10);
-                }
-            });
-            Button2Command.IsEnabled = true;
-            //Button1Command_ExecuteTargets();
+                Num1 = i;
+                Thread.Sleep(10);
+            }
         }
     }
 }
