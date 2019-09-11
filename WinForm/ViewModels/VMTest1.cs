@@ -1,19 +1,10 @@
 ﻿using PropertyChanged;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
-using System.Windows.Threading;
-using WpfMvvm.Models;
+using WinForm.Models;
 
-namespace WpfMvvm.ViewModels
+namespace WinForm.ViewModels
 {
     [AddINotifyPropertyChangedInterface]
     class VMTest1
@@ -35,14 +26,10 @@ namespace WpfMvvm.ViewModels
 
         public List<MUser> UserList { get; set; }
 
-        public DelegateCommand Button1Command { get; set; } = new DelegateCommand();
-        public DelegateCommand Button2Command { get; set; } = new DelegateCommand();
+        public MUser SelectedUser { get; set; }
 
         public VMTest1()
         {
-            Button1Command.ExecuteTargets += Button1Command_ExecuteTargets;
-            Button2Command.ExecuteTargets += Button2Command_ExecuteTargets;
-
             List1.Add(new KeyValuePair<string, string>("aaa", "111"));
             List1.Add(new KeyValuePair<string, string>("bbb", "222"));
             List1.Add(new KeyValuePair<string, string>("ccc", "333"));
@@ -56,33 +43,13 @@ namespace WpfMvvm.ViewModels
             UserList.Add(new MUser() { USER_ID = "c3", NAME = "홍길홍", UNIQUE_SEQ = 3, REG_DATE = DateTime.Now.AddDays(-3) });
             UserList.Add(new MUser() { USER_ID = "d4", NAME = "길길동", UNIQUE_SEQ = 4, REG_DATE = DateTime.Now.AddDays(-4) });
             UserList.Add(new MUser() { USER_ID = "e5", NAME = "동길동", UNIQUE_SEQ = 5, REG_DATE = DateTime.Now.AddDays(-5) });
-
-            foreach(var item in UserList)
-            {
-                item.Initialize();
-            }
         }
 
-        private void Button1Command_ExecuteTargets()
+        public void SetRandom()
         {
             Text1 = new Random().Next().ToString();
             Num1 = new Random().Next(100);
             Num2 = new Random(Num1).Next(100);
-        }
-
-        private async void Button2Command_ExecuteTargets()
-        {
-            Button2Command.IsEnabled = false;
-            await Task.Run(() =>
-            {
-                for (int i = 0; i <= 100; i++)
-                {
-                    Num1 = i;
-                    Thread.Sleep(10);
-                }
-            });
-            Button2Command.IsEnabled = true;
-            //Button1Command_ExecuteTargets();
         }
     }
 }

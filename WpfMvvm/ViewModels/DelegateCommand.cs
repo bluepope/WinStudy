@@ -5,24 +5,13 @@ namespace WpfMvvm.ViewModels
 {
     public class DelegateCommand<T> : ICommand
     {
+        public bool IsEnabled { get; set; } = true;
         Action<T> executeTargets = delegate { };
         Func<bool> canExecuteTargets = delegate { return false; };
 
         public bool CanExecute(object parameter)
         {
-            var targets = canExecuteTargets.GetInvocationList();
-            
-            //기본 체크 바인딩을 안건 경우 일단 enable
-            if (targets?.Length <= 1)
-                return true;
-
-            foreach (Func<bool> target in targets)
-            {
-                if (target.Invoke())
-                    return true;
-            }
-
-            return false;
+            return IsEnabled && (canExecuteTargets.GetInvocationList().Length == 1 || (canExecuteTargets?.Invoke() ?? true));
         }
         public void Execute(object parameter)
         {
