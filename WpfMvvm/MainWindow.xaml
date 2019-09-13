@@ -111,49 +111,71 @@
 
 
             <Frame x:Name="frame1" Source="/Page1.xaml" HorizontalAlignment="Left" Height="136" Margin="538,389,0,0" VerticalAlignment="Top" Width="200"/>
-            <GroupBox Header="GroupBox" HorizontalAlignment="Left" Height="166" Margin="17,511,0,0" VerticalAlignment="Top" Width="483">
-                <DataGrid Name="grid1"
-                        HorizontalAlignment="Left" Height="146" Margin="0,10,-0,0" VerticalAlignment="Top" Width="483"
+            <GroupBox Header="GroupBox" HorizontalAlignment="Left" Height="231" Margin="17,511,0,0" VerticalAlignment="Top" Width="483">
+                <Grid>
+                    <Button Content="추가" HorizontalAlignment="Left" Height="20" Margin="4,5,0,0" VerticalAlignment="Top" Width="50" Command="{Binding UserListAddCommand}" />
+                    <Button Content="삭제" HorizontalAlignment="Left" Height="20" Margin="59,5,0,0" VerticalAlignment="Top" Width="50" Command="{Binding UserListDeleteCommand}" CommandParameter="{Binding ElementName=grid1, Path=SelectedItem}" />
+
+                    <DataGrid Name="grid1"
+                        HorizontalAlignment="Left" Margin="0,30,0,0"
                           ItemsSource="{Binding UserList}"
                           SelectedItem="{Binding SelectedUser}"
+                          CanUserAddRows="False"
+                          CanUserDeleteRows="False"
                           AutoGenerateColumns="False">
-                    <DataGrid.RowStyle>
-                        <Style TargetType="DataGridRow">
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding isEdit}" Value="True">
-                                    <Setter Property="Background" Value="Orange"></Setter>
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </DataGrid.RowStyle>
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="아이디" Binding="{Binding USER_ID}" Width="100">
-                            <DataGridTextColumn.CellStyle>
-                                <Style TargetType="DataGridCell">
-                                    <Setter Property="IsEnabled" Value="{Binding Path=CanEdit}" />
-                                </Style>
-                            </DataGridTextColumn.CellStyle>
-                        </DataGridTextColumn>
-                        <DataGridTextColumn Header="사용자명" Binding="{Binding NAME}" Width="100"  />
-                        <DataGridTextColumn Header="고유번호" Binding="{Binding UNIQUE_SEQ}" Width="100"  />
-                        
-                        <DataGridTemplateColumn Header="등록일">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding REG_DATE, Converter={StaticResource dateTimeToStringConverter}, ConverterParameter='yyyy-MM-dd'}" />
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                            <DataGridTemplateColumn.CellEditingTemplate>
-                                <DataTemplate>
-                                    <DatePicker SelectedDate="{Binding REG_DATE}" />
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellEditingTemplate>
-                        </DataGridTemplateColumn>
-                        
-                        <DataGridTextColumn Header="등록일2" Binding="{Binding REG_DATE, Converter={StaticResource dateTimeToStringConverter}, ConverterParameter='yyyy-MM-dd'}" Width="*"  />
-                    </DataGrid.Columns>
+                        <DataGrid.RowStyle>
+                            <Style TargetType="DataGridRow">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding isEdit}" Value="True">
+                                        <Setter Property="Background" Value="Orange"></Setter>
+                                    </DataTrigger>
+                                    <MultiDataTrigger>
+                                        <MultiDataTrigger.Conditions>
+                                            <Condition Binding="{Binding Path=isDelete}" Value="True" />
+                                            <Condition Binding="{Binding Path=isEdit}" Value="True" />
+                                        </MultiDataTrigger.Conditions>
+                                        <Setter Property="Background" Value="Red" />
+                                    </MultiDataTrigger>
+                                    <MultiDataTrigger>
+                                        <MultiDataTrigger.Conditions>
+                                            <Condition Binding="{Binding Path=isNew}" Value="True" />
+                                            <Condition Binding="{Binding Path=isEdit}" Value="True" />
+                                        </MultiDataTrigger.Conditions>
+                                        <Setter Property="Background" Value="Cyan" />
+                                    </MultiDataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </DataGrid.RowStyle>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="아이디" Binding="{Binding USER_ID}" Width="100">
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="IsEnabled" Value="{Binding Path=CanEdit}" />
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="사용자명" Binding="{Binding NAME}" Width="100"  />
+                            <DataGridTextColumn Header="고유번호" Binding="{Binding UNIQUE_SEQ}" Width="100"  />
 
-                </DataGrid>
+                            <DataGridTemplateColumn Header="등록일">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding REG_DATE, Converter={StaticResource dateTimeToStringConverter}, ConverterParameter='yyyy-MM-dd'}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                                <DataGridTemplateColumn.CellEditingTemplate>
+                                    <DataTemplate>
+                                        <DatePicker SelectedDate="{Binding REG_DATE}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellEditingTemplate>
+                            </DataGridTemplateColumn>
+
+                            <DataGridTextColumn Header="등록일2" Binding="{Binding REG_DATE, Converter={StaticResource dateTimeToStringConverter}, ConverterParameter='yyyy-MM-dd'}" Width="*"  />
+                        </DataGrid.Columns>
+
+                    </DataGrid>
+                </Grid>
+
             </GroupBox>
             <GroupBox Header="선택된" HorizontalAlignment="Left" Height="147" Margin="538,530,0,0" VerticalAlignment="Top" Width="182">
                 <Grid>

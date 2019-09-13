@@ -14,7 +14,7 @@ namespace WpfMvvm.ViewModels
         {
             return !IsExecuting && (canExecuteTargets.GetInvocationList().Length == 1 || (canExecuteTargets?.Invoke() ?? true));
         }
-        public async void Execute(object parameter)
+        public void Execute(object parameter)
         {
             if (CanExecute(parameter) == false)
                 return;
@@ -22,7 +22,7 @@ namespace WpfMvvm.ViewModels
             IsExecuting = true;
             CommandManager.InvalidateRequerySuggested();
 
-            await Task.Run(() => executeTargets());
+            executeTargets();
 
             IsExecuting = false;
             CommandManager.InvalidateRequerySuggested();

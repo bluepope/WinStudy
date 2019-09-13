@@ -18,7 +18,9 @@ namespace WpfMvvm.Models
             get => UNIQUE_SEQ <= 2;
         }
 
+        public bool isNew { get; set; } = false;
         public bool isEdit { get; set; } = false;
+        public bool isDelete { get; set; } = false;
 
         public string USER_ID { get; set; }
         public string NAME { get; set; }

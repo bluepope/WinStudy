@@ -1,6 +1,8 @@
 ﻿using PropertyChanged;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -9,6 +11,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Threading;
 using WpfMvvm.Models;
@@ -33,15 +36,43 @@ namespace WpfMvvm.ViewModels
 
         public List<KeyValuePair<string, string>> List1 { get; set; } = new List<KeyValuePair<string, string>>();
 
-        public List<MUser> UserList { get; set; }
+        public ObservableCollection<MUser> UserList { get; set; } = new ObservableCollection<MUser>();
 
         public DelegateCommand Button1Command { get; set; } = new DelegateCommand();
-        public DelegateCommand Button2Command { get; set; } = new DelegateCommand();
+        public DelegateCommandAsync Button2Command { get; set; } = new DelegateCommandAsync();
+
+        public DelegateCommandAsync UserListAddCommand { get; set; } = new DelegateCommandAsync();
+        public DelegateCommandAsync<MUser> UserListDeleteCommand { get; set; } = new DelegateCommandAsync<MUser>();
 
         public VMTest1()
         {
             Button1Command.ExecuteTargets += Button1Command_ExecuteTargets;
             Button2Command.ExecuteTargets += Button2Command_ExecuteTargets;
+
+            UserListAddCommand.ExecuteTargets += () => {
+                return Application.Current.Dispatcher.InvokeAsync(() =>
+                {
+                    UserList.Add(new MUser() { isNew = true, isEdit = true });
+                }).Task;
+            };
+
+            UserListDeleteCommand.ExecuteTargets += (item) => {
+                return Task.Run(async () =>
+                {
+                    if (item == null)
+                        return;
+
+                    if (item.isNew)
+                    {
+                        await Application.Current.Dispatcher.InvokeAsync(() =>
+                        {
+                            UserList.Remove(item);
+                        });
+                    }
+                    else
+                        item.isDelete = true;
+                });
+            };
 
             List1.Add(new KeyValuePair<string, string>("aaa", "111"));
             List1.Add(new KeyValuePair<string, string>("bbb", "222"));
@@ -50,14 +81,13 @@ namespace WpfMvvm.ViewModels
 
             List1SelectedValue = "222";
 
-            UserList = new List<MUser>();
             UserList.Add(new MUser() { USER_ID = "a1", UNIQUE_SEQ = 1, REG_DATE = DateTime.Now.AddDays(-1) });
             UserList.Add(new MUser() { USER_ID = "b2", NAME = "고길동", UNIQUE_SEQ = 2, REG_DATE = DateTime.Now.AddDays(-2) });
             UserList.Add(new MUser() { USER_ID = "c3", NAME = "홍길홍", UNIQUE_SEQ = 3, REG_DATE = DateTime.Now.AddDays(-3) });
             UserList.Add(new MUser() { USER_ID = "d4", NAME = "길길동", UNIQUE_SEQ = 4, REG_DATE = DateTime.Now.AddDays(-4) });
             UserList.Add(new MUser() { USER_ID = "e5", NAME = "동길동", UNIQUE_SEQ = 5, REG_DATE = DateTime.Now.AddDays(-5) });
 
-            foreach(var item in UserList)
+            foreach (var item in UserList)
             {
                 item.Initialize();
             }
@@ -70,13 +100,16 @@ namespace WpfMvvm.ViewModels
             Num2 = new Random(Num1).Next(100);
         }
 
-        private void Button2Command_ExecuteTargets()
+        private Task Button2Command_ExecuteTargets()
         {
-            for (int i = 0; i <= 100; i++)
+            return Task.Run(() =>
             {
-                Num1 = i;
-                Thread.Sleep(10);
-            }
+                for (int i = 0; i <= 100; i++)
+                {
+                    Num1 = i;
+                    Thread.Sleep(10);
+                }
+            });
         }
     }
 }
