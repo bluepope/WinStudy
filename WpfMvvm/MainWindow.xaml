@@ -115,7 +115,7 @@
             <GroupBox Header="GroupBox" HorizontalAlignment="Left" Height="231" Margin="17,511,0,0" VerticalAlignment="Top" Width="483">
                 <Grid>
                     <Button Content="추가" HorizontalAlignment="Left" Height="20" Margin="4,5,0,0" VerticalAlignment="Top" Width="50" Command="{Binding UserListAddCommand}" />
-                    <Button Content="삭제" HorizontalAlignment="Left" Height="20" Margin="59,5,0,0" VerticalAlignment="Top" Width="50" Command="{Binding UserListDeleteCommand}" CommandParameter="{Binding ElementName=grid1, Path=SelectedItem}" />
+                    <Button Content="삭제" HorizontalAlignment="Left" Height="20" Margin="59,5,0,0" VerticalAlignment="Top" Width="50" Command="{Binding UserListDeleteCommand}" CommandParameter="{Binding ElementName=grid1, Path=SelectedItems}" />
 
                     <cc:CustomDataGrid x:Name="grid1"
                         HorizontalAlignment="Left" Margin="0,30,0,0"

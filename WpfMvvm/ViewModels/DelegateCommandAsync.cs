@@ -2,6 +2,9 @@
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Linq;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace WpfMvvm.ViewModels
 {
@@ -23,7 +26,22 @@ namespace WpfMvvm.ViewModels
             IsExecuting = true;
             CommandManager.InvalidateRequerySuggested();
 
-            await executeTargets(parameter != null ? (T)parameter : default(T));
+            if (parameter?.GetType().Name == "SelectedItemCollection")
+            {
+                var list = (IList)parameter;
+                var arr = new T[list.Count];
+
+                ((IList)parameter).CopyTo(arr, 0);
+                    
+                foreach (var item in arr)
+                {
+                    await executeTargets((T)item);
+                }
+            }
+            else
+            {
+                await executeTargets(parameter != null ? (T)parameter : default(T));
+            }
 
             IsExecuting = false;
             await Application.Current.Dispatcher.InvokeAsync(() =>

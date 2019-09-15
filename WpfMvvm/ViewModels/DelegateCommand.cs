@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -22,7 +23,23 @@ namespace WpfMvvm.ViewModels
             IsExecuting = true;
             CommandManager.InvalidateRequerySuggested();
 
-            executeTargets(parameter != null ? (T)parameter : default(T));
+            if (parameter?.GetType().Name == "SelectedItemCollection")
+            {
+                var list = (IList)parameter;
+                var arr = new T[list.Count];
+
+                ((IList)parameter).CopyTo(arr, 0);
+
+                foreach (var item in arr)
+                {
+                    executeTargets((T)item);
+                }
+            }
+            else
+            {
+                executeTargets(parameter != null ? (T)parameter : default(T));
+            }
+            
 
             IsExecuting = false;
             CommandManager.InvalidateRequerySuggested();

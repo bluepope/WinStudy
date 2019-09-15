@@ -37,7 +37,7 @@ namespace WpfMvvm.ViewModels
         public List<KeyValuePair<string, string>> List1 { get; set; } = new List<KeyValuePair<string, string>>();
 
         public ObservableCollection<MUser> UserList { get; set; } = new ObservableCollection<MUser>();
-
+        
         public DelegateCommand Button1Command { get; set; } = new DelegateCommand();
         public DelegateCommandAsync Button2Command { get; set; } = new DelegateCommandAsync();
 
@@ -54,7 +54,10 @@ namespace WpfMvvm.ViewModels
                 //return Task.Run(() => UserList.Add(new MUser() { isNew = true, isEdit = true }));
 
                 //UI 쓰레드를 통해 추가
-                return Application.Current.Dispatcher.InvokeAsync(() => UserList.Add(new MUser() { isNew = true, isEdit = true })).Task;
+                return Application.Current.Dispatcher.InvokeAsync(() =>
+                {
+                    UserList.Add(new MUser() { isNew = true, isEdit = true });
+                }).Task;
             };
 
             UserListDeleteCommand.ExecuteTargets += (item) => {
