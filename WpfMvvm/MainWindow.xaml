@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfMvvm"
         xmlns:converter="clr-namespace:WpfMvvm.Converters"
-        xmlns:UserControls="clr-namespace:WpfMvvm.UserControls"
+        xmlns:uc="clr-namespace:WpfMvvm.UserControls"
+        xmlns:cc="clr-namespace:WpfMvvm.CustomControls"
         mc:Ignorable="d"
         x:Class="WpfMvvm.MainWindow"
         Title="MainWindow" Height="800" Width="766">
@@ -103,9 +104,9 @@
             <GroupBox Header="UserControl" HorizontalAlignment="Left" Height="123" Margin="17,371,0,0" VerticalAlignment="Top" Width="498">
                 <Grid>
                     <TextBlock HorizontalAlignment="Left" Height="21" Margin="0,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="69" Text="DateTime1" />
-                    <UserControls:CustomDatePicker HorizontalAlignment="Left" Height="55"  VerticalAlignment="Top" Width="141" Value="{Binding DateTime1}" Margin="69,14,0,0" />
+                    <uc:CustomDatePicker HorizontalAlignment="Left" Height="55"  VerticalAlignment="Top" Width="141" Value="{Binding DateTime1}" Margin="69,14,0,0" />
                     <TextBlock HorizontalAlignment="Left" Height="21" Margin="237,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="58" Text="DateText1" />
-                    <UserControls:TextDatePicker HorizontalAlignment="Left" Height="59" Margin="300,10,0,0" VerticalAlignment="Top" Width="176" Value="{Binding DateText1}" Format="yyyyMMdd" />
+                    <uc:TextDatePicker HorizontalAlignment="Left" Height="59" Margin="300,10,0,0" VerticalAlignment="Top" Width="176" Value="{Binding DateText1}" Format="yyyyMMdd" />
                 </Grid>
             </GroupBox>
 
@@ -116,33 +117,22 @@
                     <Button Content="추가" HorizontalAlignment="Left" Height="20" Margin="4,5,0,0" VerticalAlignment="Top" Width="50" Command="{Binding UserListAddCommand}" />
                     <Button Content="삭제" HorizontalAlignment="Left" Height="20" Margin="59,5,0,0" VerticalAlignment="Top" Width="50" Command="{Binding UserListDeleteCommand}" CommandParameter="{Binding ElementName=grid1, Path=SelectedItem}" />
 
-                    <DataGrid Name="grid1"
+                    <cc:CustomDataGrid x:Name="grid1"
                         HorizontalAlignment="Left" Margin="0,30,0,0"
                           ItemsSource="{Binding UserList}"
-                          SelectedItem="{Binding SelectedUser}"
-                          CanUserAddRows="False"
-                          CanUserDeleteRows="False"
-                          AutoGenerateColumns="False">
+                          SelectedItem="{Binding SelectedUser}">
                         <DataGrid.RowStyle>
                             <Style TargetType="DataGridRow">
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding isEdit}" Value="True">
                                         <Setter Property="Background" Value="Orange"></Setter>
                                     </DataTrigger>
-                                    <MultiDataTrigger>
-                                        <MultiDataTrigger.Conditions>
-                                            <Condition Binding="{Binding Path=isDelete}" Value="True" />
-                                            <Condition Binding="{Binding Path=isEdit}" Value="True" />
-                                        </MultiDataTrigger.Conditions>
-                                        <Setter Property="Background" Value="Red" />
-                                    </MultiDataTrigger>
-                                    <MultiDataTrigger>
-                                        <MultiDataTrigger.Conditions>
-                                            <Condition Binding="{Binding Path=isNew}" Value="True" />
-                                            <Condition Binding="{Binding Path=isEdit}" Value="True" />
-                                        </MultiDataTrigger.Conditions>
-                                        <Setter Property="Background" Value="Cyan" />
-                                    </MultiDataTrigger>
+                                    <DataTrigger Binding="{Binding isNew}" Value="True">
+                                        <Setter Property="Background" Value="Cyan"></Setter>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding isDelete}" Value="True">
+                                        <Setter Property="Background" Value="Red"></Setter>
+                                    </DataTrigger>
                                 </Style.Triggers>
                             </Style>
                         </DataGrid.RowStyle>
@@ -173,7 +163,7 @@
                             <DataGridTextColumn Header="등록일2" Binding="{Binding REG_DATE, Converter={StaticResource dateTimeToStringConverter}, ConverterParameter='yyyy-MM-dd'}" Width="*"  />
                         </DataGrid.Columns>
 
-                    </DataGrid>
+                    </cc:CustomDataGrid>
                 </Grid>
 
             </GroupBox>

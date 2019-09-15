@@ -43,6 +43,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -65,6 +67,7 @@
     <Compile Include="Converters\BoolInverterConverter.cs" />
     <Compile Include="CustomControls\DataGridNumericColumn.cs" />
     <Compile Include="Models\MUser.cs" />
+    <Compile Include="CustomControls\CustomDataGrid.cs" />
     <Compile Include="UserControls\TextDatePicker.xaml.cs">
       <DependentUpon>TextDatePicker.xaml</DependentUpon>
     </Compile>

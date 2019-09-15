@@ -50,10 +50,11 @@ namespace WpfMvvm.ViewModels
             Button2Command.ExecuteTargets += Button2Command_ExecuteTargets;
 
             UserListAddCommand.ExecuteTargets += () => {
-                return Application.Current.Dispatcher.InvokeAsync(() =>
-                {
-                    UserList.Add(new MUser() { isNew = true, isEdit = true });
-                }).Task;
+                //non ThreadSafe 로 오류 발생
+                //return Task.Run(() => UserList.Add(new MUser() { isNew = true, isEdit = true }));
+
+                //UI 쓰레드를 통해 추가
+                return Application.Current.Dispatcher.InvokeAsync(() => UserList.Add(new MUser() { isNew = true, isEdit = true })).Task;
             };
 
             UserListDeleteCommand.ExecuteTargets += (item) => {
