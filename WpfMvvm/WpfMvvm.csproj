@@ -76,6 +76,7 @@
     </Compile>
     <Compile Include="Converters\StringToDateTimeConverter.cs" />
     <Compile Include="Converters\DateTimeToStringConverter.cs" />
+    <Compile Include="ViewModels\CustomList.cs" />
     <Compile Include="ViewModels\DelegateCommandAsync.cs" />
     <Compile Include="ViewModels\DelegateCommand.cs" />
     <Compile Include="ViewModels\DelegateCommandAsync_NonGeneric.cs" />

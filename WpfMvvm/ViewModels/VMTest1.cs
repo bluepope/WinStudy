@@ -18,7 +18,7 @@ using WpfMvvm.Models;
 
 namespace WpfMvvm.ViewModels
 {
-    [AddINotifyPropertyChangedInterface]
+    //[AddINotifyPropertyChangedInterface]
     class VMTest1
     {
         public string Text1 { get; set; }
@@ -36,7 +36,7 @@ namespace WpfMvvm.ViewModels
 
         public List<KeyValuePair<string, string>> List1 { get; set; } = new List<KeyValuePair<string, string>>();
 
-        public ObservableCollection<MUser> UserList { get; set; } = new ObservableCollection<MUser>();
+        public CustomList<MUser> UserList { get; set; } = new CustomList<MUser>();
         
         public DelegateCommand Button1Command { get; set; } = new DelegateCommand();
         public DelegateCommandAsync Button2Command { get; set; } = new DelegateCommandAsync();
@@ -51,32 +51,59 @@ namespace WpfMvvm.ViewModels
 
             UserListAddCommand.ExecuteTargets += () => {
                 //non ThreadSafe 로 오류 발생
-                //return Task.Run(() => UserList.Add(new MUser() { isNew = true, isEdit = true }));
+                return Task.Run(() => {
+                    UserList.Add(new MUser() { isNew = true, isEdit = true });
+                    UserList.Add(new MUser() { isNew = true, isEdit = true });
+                    UserList.Add(new MUser() { isNew = true, isEdit = true });
+                    UserList.Add(new MUser() { isNew = true, isEdit = true });
+                    UserList.Add(new MUser() { isNew = true, isEdit = true }, true);
+                });
 
                 //UI 쓰레드를 통해 추가
                 return Application.Current.Dispatcher.InvokeAsync(() =>
                 {
                     UserList.Add(new MUser() { isNew = true, isEdit = true });
+                    UserList.Add(new MUser() { isNew = true, isEdit = true });
+                    UserList.Add(new MUser() { isNew = true, isEdit = true });
+                    UserList.Add(new MUser() { isNew = true, isEdit = true });
+                    UserList.Add(new MUser() { isNew = true, isEdit = true }, true);
                 }).Task;
             };
 
             UserListDeleteCommand.ExecuteTargets += (item) => {
-                return Task.Run(async () =>
+
+                //원래대로라면 UI ThreadSafe 오류 발생함
+                return Task.Run(() =>
                 {
                     if (item == null)
                         return;
 
                     if (item.isNew)
-                    {
-                        await Application.Current.Dispatcher.InvokeAsync(() =>
-                        {
-                            UserList.Remove(item);
-                        });
-                    }
+                        UserList.Remove(item);
                     else
                         item.isDelete = true;
+
+                    UserList.OnNotifyCollectionChanged();
                 });
             };
+            /*
+            return Task.Run(async () =>
+            {
+                if (item == null)
+                    return;
+
+                if (item.isNew)
+                {
+                    await Application.Current.Dispatcher.InvokeAsync(() =>
+                    {
+                        UserList.Remove(item);
+                    });
+                }
+                else
+                    item.isDelete = true;
+            });
+        };
+        */
 
             List1.Add(new KeyValuePair<string, string>("aaa", "111"));
             List1.Add(new KeyValuePair<string, string>("bbb", "222"));
