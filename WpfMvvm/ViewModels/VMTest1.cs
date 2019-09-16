@@ -56,7 +56,7 @@ namespace WpfMvvm.ViewModels
                     UserList.Add(new MUser() { isNew = true, isEdit = true });
                     UserList.Add(new MUser() { isNew = true, isEdit = true });
                     UserList.Add(new MUser() { isNew = true, isEdit = true });
-                    UserList.Add(new MUser() { isNew = true, isEdit = true }, true);
+                    UserList.Add(new MUser() { isNew = true, isEdit = true });
                 });
 
                 //UI 쓰레드를 통해 추가
@@ -66,7 +66,7 @@ namespace WpfMvvm.ViewModels
                     UserList.Add(new MUser() { isNew = true, isEdit = true });
                     UserList.Add(new MUser() { isNew = true, isEdit = true });
                     UserList.Add(new MUser() { isNew = true, isEdit = true });
-                    UserList.Add(new MUser() { isNew = true, isEdit = true }, true);
+                    UserList.Add(new MUser() { isNew = true, isEdit = true });
                 }).Task;
             };
 
@@ -83,7 +83,7 @@ namespace WpfMvvm.ViewModels
                     else
                         item.isDelete = true;
 
-                    UserList.OnNotifyCollectionChanged();
+                    //UserList.OnNotifyCollectionChanged();
                 });
             };
             /*
