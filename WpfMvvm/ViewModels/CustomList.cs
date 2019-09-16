@@ -35,21 +35,25 @@ namespace WpfMvvm.ViewModels
             _lastCts?.Dispose();
 
             _lastCts = new CancellationTokenSource();
-            RunNotifyCollectionChanged(_lastCts);
-        }
 
-        async void RunNotifyCollectionChanged(CancellationTokenSource cts)
-        {
-            //100ms 대기
-            await Task.Delay(100);
-
-            if (cts.IsCancellationRequested)
-                return;
-
-            await Application.Current.Dispatcher.InvokeAsync(() =>
+            Task.Run(async () =>
             {
-                CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
-            });
+                //람다 변수캡쳐 문제로 로컬 변수로 만들어줌
+                //https://www.sysnet.pe.kr/2/0/10817
+                var cts = _lastCts;
+                
+                //100ms 대기
+                await Task.Delay(100);
+
+                //새로운 요청이 발생했다면 이 실행은 취소됩니다
+                if (cts.IsCancellationRequested)
+                    return;
+
+                await Application.Current.Dispatcher.InvokeAsync(() =>
+                {
+                    CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+                });
+            }, _lastCts.Token);
         }
     }
 }
