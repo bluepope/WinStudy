@@ -18,28 +18,17 @@ namespace WpfMvvm.CustomLibrary
     {
         List<T> _list = new List<T>();
         CancellationTokenSource _lastCts;
-        public CustomList()
-        {
-        }
 
-        public CustomList(List<T> list)
-        {
-            //deep copy
-            this._list = list.ConvertAll(p => p);
-        }
-        public CustomList(IList<T> ilist)
-        {
-            //deep copy
-            this._list = ilist.ToList();
-        }
+        #region 생성자
+        public CustomList() { }
+        public CustomList(List<T> list) => this._list = list.ConvertAll(p => p); //deep copy
+        public CustomList(IList<T> ilist) => this._list = ilist.ToList(); //deep copy
+        #endregion
 
-
+        #region 인터페이스 구현
         public T this[int index] { get => _list[index]; set => _list[index] = value; }
-
         public int Count => _list.Count;
-
         public bool IsReadOnly => false;
-
         public event NotifyCollectionChangedEventHandler CollectionChanged;
 
         public void Add(T item)
@@ -72,7 +61,6 @@ namespace WpfMvvm.CustomLibrary
             OnNotifyCollectionChanged();
         }
 
-
         public bool Contains(T item) => _list.Contains(item);
 
         public void CopyTo(T[] array, int arrayIndex) => _list.CopyTo(array, arrayIndex);
@@ -82,7 +70,16 @@ namespace WpfMvvm.CustomLibrary
         public int IndexOf(T item) =>_list.IndexOf(item);
 
         IEnumerator IEnumerable.GetEnumerator() =>  _list.GetEnumerator();
+        #endregion
 
+        #region 연산자 정의
+        public static implicit operator CustomList<T>(List<T> list)
+        {
+            return new CustomList<T>(list);
+        }
+        #endregion
+
+        #region Notify이벤트 알림
         public void OnNotifyCollectionChanged()
         {
             //기존 작업이 있다면 취소함
@@ -110,10 +107,6 @@ namespace WpfMvvm.CustomLibrary
                 });
             }, _lastCts.Token);
         }
-
-        public static implicit operator CustomList<T>(List<T> list)
-        {
-            return new CustomList<T>(list);
-        }
+        #endregion
     }
 }
