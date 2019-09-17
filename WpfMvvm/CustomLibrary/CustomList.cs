@@ -14,7 +14,7 @@ using WpfMvvm.Models;
 
 namespace WpfMvvm.CustomLibrary
 {
-    public class CustomList<T> : IList<T>, INotifyCollectionChanged
+    public class CustomList<T> : IList<T>, INotifyCollectionChanged, IDisposable
     {
         List<T> _list = new List<T>();
         CancellationTokenSource _lastCts;
@@ -70,6 +70,17 @@ namespace WpfMvvm.CustomLibrary
         public int IndexOf(T item) =>_list.IndexOf(item);
 
         IEnumerator IEnumerable.GetEnumerator() =>  _list.GetEnumerator();
+
+        public void Dispose()
+        {
+            _lastCts?.Cancel();
+            _lastCts?.Dispose();
+            _lastCts = null;
+
+            _list.Clear();
+            _list = null;
+        }
+
         #endregion
 
         #region 연산자 정의
