@@ -14,6 +14,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Threading;
+using WpfMvvm.CustomLibrary;
 using WpfMvvm.Models;
 
 namespace WpfMvvm.ViewModels
@@ -36,8 +37,12 @@ namespace WpfMvvm.ViewModels
 
         public List<KeyValuePair<string, string>> List1 { get; set; } = new List<KeyValuePair<string, string>>();
 
+
+        //이것저것 테스트
+        //public CustomList<MUser> UserList { get; set; } = new List<MUser>();
+        //public IList<MUser> UserList { get; set; } = new CustomList<MUser>();
         public CustomList<MUser> UserList { get; set; } = new CustomList<MUser>();
-        
+
         public DelegateCommand Button1Command { get; set; } = new DelegateCommand();
         public DelegateCommandAsync Button2Command { get; set; } = new DelegateCommandAsync();
 
