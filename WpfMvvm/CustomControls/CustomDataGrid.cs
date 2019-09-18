@@ -48,45 +48,5 @@ namespace WpfMvvm.CustomControls
             }).Invoke());
             */
         }
-
-        //현재 텍스트 셀이 변경되었을 경우만 됨 -- Datepicker 같은거 안됨
-        /*
-        protected override void OnCellEditEnding(DataGridCellEditEndingEventArgs e)
-        {
-            if (e.EditAction == DataGridEditAction.Commit)
-            {
-                var inputValueProperty = e.EditingElement.GetType().GetProperty("Text");
-                
-                if (inputValueProperty != null)
-                {
-                    var changedValue = inputValueProperty.GetValue(e.EditingElement) as string;
-
-                    var bindingList = e.Column.GetCellContent(e.Row).BindingGroup.BindingExpressions;
-
-                    if (bindingList.Count < 1)
-                        return;
-
-                    foreach (BindingExpression binding in bindingList)
-                    {
-                        var columnName = binding.ResolvedSourcePropertyName;
-
-                        var beforeValue = binding.ResolvedSource.GetType().GetProperty(columnName).GetValue(binding.ResolvedSource) as string;
-
-                        if (beforeValue == null)
-                            beforeValue = "";
-
-                        if (beforeValue != changedValue)
-                        {
-                            binding.ResolvedSource.GetType().GetProperty("isEdit")?.SetValue(binding.ResolvedSource, true);
-                            break;
-                        }
-                    }
-                }
-            }
-            base.OnCellEditEnding(e);
-        }
-        */
-
-       
     }
 }

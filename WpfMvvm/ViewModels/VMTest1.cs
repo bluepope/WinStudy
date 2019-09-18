@@ -39,7 +39,6 @@ namespace WpfMvvm.ViewModels
 
 
         //이것저것 테스트
-        //IList는 ReadOnly 기준 --> 수정하려고 하면 오류남!
         //public CustomList<MUser> UserList { get; set; } = new List<MUser>();
         //public IList<MUser> UserList { get; set; } = new CustomList<MUser>();
         public CustomList<MUser> UserList { get; set; } = new CustomList<MUser>();
@@ -123,6 +122,11 @@ namespace WpfMvvm.ViewModels
             UserList.Add(new MUser() { USER_ID = "c3", NAME = "홍길홍", UNIQUE_SEQ = 3, REG_DATE = DateTime.Now.AddDays(-3) });
             UserList.Add(new MUser() { USER_ID = "d4", NAME = "길길동", UNIQUE_SEQ = 4, REG_DATE = DateTime.Now.AddDays(-4) });
             UserList.Add(new MUser() { USER_ID = "e5", NAME = "동길동", UNIQUE_SEQ = 5, REG_DATE = DateTime.Now.AddDays(-5) });
+
+            foreach (var item in UserList)
+            {
+                item.Initialize();
+            }
         }
 
         private void Button1Command_ExecuteTargets()
