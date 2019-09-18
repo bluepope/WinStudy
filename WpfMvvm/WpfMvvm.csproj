@@ -66,6 +66,7 @@
     <Compile Include="Attributes\DoNotIsEditChangeAttribute.cs" />
     <Compile Include="Converters\BoolInverterConverter.cs" />
     <Compile Include="CustomControls\DataGridNumericColumn.cs" />
+    <Compile Include="CustomLibrary\CustomList.cs" />
     <Compile Include="Models\MUser.cs" />
     <Compile Include="CustomControls\CustomDataGrid.cs" />
     <Compile Include="UserControls\TextDatePicker.xaml.cs">
@@ -76,7 +77,7 @@
     </Compile>
     <Compile Include="Converters\StringToDateTimeConverter.cs" />
     <Compile Include="Converters\DateTimeToStringConverter.cs" />
-    <Compile Include="CustomLibrary\CustomList.cs" />
+    <Compile Include="CustomLibrary\CustomIList.cs" />
     <Compile Include="ViewModels\DelegateCommandAsync.cs" />
     <Compile Include="ViewModels\DelegateCommand.cs" />
     <Compile Include="ViewModels\DelegateCommandAsync_NonGeneric.cs" />
