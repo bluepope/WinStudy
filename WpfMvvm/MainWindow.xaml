@@ -80,8 +80,8 @@
                 </Grid>
             </GroupBox>
 
-            <Button Content="랜덤값 생성" HorizontalAlignment="Left" Height="67" Margin="538,27,0,0" VerticalAlignment="Top" Width="83" Command="{Binding Button1Command}" />
-            <Button Content="프로그래스!" HorizontalAlignment="Left" Height="67" Margin="637,27,0,0" VerticalAlignment="Top" Width="83" Command="{Binding Button2Command}" />
+            <Button Content="랜덤값 생성&#xA;F2" HorizontalAlignment="Left" Height="67" Margin="538,27,0,0" VerticalAlignment="Top" Width="83" Command="{Binding Button1Command}" />
+            <Button Content="프로그래스!&#xA;Ctrl+S" HorizontalAlignment="Left" Height="67" Margin="637,27,0,0" VerticalAlignment="Top" Width="83" Command="{Binding Button2Command}" />
             <Border BorderThickness="1" HorizontalAlignment="Left" VerticalAlignment="Top" BorderBrush="Red" Margin="538,148,0,0" Width="200" Height="208">
                 <Grid>
                     <Label Content="생성값" HorizontalAlignment="Left" Height="27" Margin="0,0,0,0" VerticalAlignment="Top" Width="76"/>
