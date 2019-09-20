@@ -27,5 +27,22 @@ namespace WpfMvvm
 
             this.DataContext = new VMTest1();
         }
+
+        protected override void OnKeyDown(KeyEventArgs e)
+        {
+            if (e.Key == Key.F2)
+            {
+                //키보드 단축키 만들기...?
+                e.Handled = true;
+            }
+            else if (e.Key == Key.S && (Keyboard.Modifiers == ModifierKeys.Control))
+            {
+                e.Handled = true;
+            }
+            else
+            {
+                base.OnKeyDown(e);
+            }
+        }
     }
 }
