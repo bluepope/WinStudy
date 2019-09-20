@@ -48,5 +48,15 @@ namespace WpfMvvm.CustomControls
             }).Invoke());
             */
         }
+
+        public void AddTextColumn(string fieldName, string header, int width)
+        {
+            var col = new DataGridTextColumn();
+            col.Binding = new Binding(fieldName);
+            col.Header = header;
+            col.Width = width;
+
+            Columns.Add(col);
+        }
     }
 }

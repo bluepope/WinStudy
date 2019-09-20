@@ -19,7 +19,7 @@ using WpfMvvm.Models;
 
 namespace WpfMvvm.ViewModels
 {
-    //[AddINotifyPropertyChangedInterface]
+    [AddINotifyPropertyChangedInterface]
     class VMTest1
     {
         public string Text1 { get; set; }

@@ -28,6 +28,8 @@ namespace WinForm
             _viewModel = new VMTest1();
             _viewModel.SetRandom();
 
+            this.progressBar1.DataBindings.Add("Value", _viewModel, "Num1");
+
             this.dataGridView1.AutoGenerateColumns = false;
 
             this.dataGridView1.Columns.Add(new DataGridViewTextBoxColumn() { Name = "아이디", DataPropertyName = "USER_ID" });
@@ -53,7 +55,6 @@ namespace WinForm
                     bind.ReadValue();
                 };
             };
-                
             
             Task.Run(() => {
                 for(int i=0; i < 100; i++)
@@ -79,6 +80,11 @@ namespace WinForm
         {
             _viewModel.Text1 = new Random().Next(100).ToString();
 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            _viewModel.SetRandom();
         }
     }
 }
