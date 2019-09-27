@@ -86,5 +86,15 @@ namespace WinForm
         {
             _viewModel.SetRandom();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            using (var form = new Form2())
+            {
+                form.ShowDialog();
+
+                MessageBox.Show(form.Text1);
+            }
+        }
     }
 }
