@@ -49,8 +49,17 @@ namespace WpfMvvm.ViewModels
         public DelegateCommandAsync UserListAddCommand { get; set; } = new DelegateCommandAsync();
         public DelegateCommandAsync<MUser> UserListDeleteCommand { get; set; } = new DelegateCommandAsync<MUser>();
 
+        public CustomList<MAdmin> AdminList { get; set; }
         public VMTest1()
         {
+            var list = new CustomList<MAdmin>();
+            list.Add(new MAdmin() { ADMIN_SEQ = 1, ADMIN_NAME = "관리자1" });
+            list.Add(new MAdmin() { ADMIN_SEQ = 2, ADMIN_NAME = "관리자2" });
+            list.Add(new MAdmin() { ADMIN_SEQ = 3, ADMIN_NAME = "관리자3" });
+            list.Add(new MAdmin() { ADMIN_SEQ = 4, ADMIN_NAME = "관리자4" });
+
+            AdminList = list;
+
             Button1Command.ExecuteTargets += Button1Command_ExecuteTargets;
             Button2Command.ExecuteTargets += Button2Command_ExecuteTargets;
 
@@ -117,7 +126,7 @@ namespace WpfMvvm.ViewModels
 
             List1SelectedValue = "222";
 
-            UserList.Add(new MUser() { USER_ID = "a1", UNIQUE_SEQ = 1, REG_DATE = DateTime.Now.AddDays(-1) });
+            UserList.Add(new MUser() { USER_ID = "a1", UNIQUE_SEQ = 1, REG_DATE = DateTime.Now.AddDays(-1), ADMIN_SEQ = 1 });
             UserList.Add(new MUser() { USER_ID = "b2", NAME = "고길동", UNIQUE_SEQ = 2, REG_DATE = DateTime.Now.AddDays(-2) });
             UserList.Add(new MUser() { USER_ID = "c3", NAME = "홍길홍", UNIQUE_SEQ = 3, REG_DATE = DateTime.Now.AddDays(-3) });
             UserList.Add(new MUser() { USER_ID = "d4", NAME = "길길동", UNIQUE_SEQ = 4, REG_DATE = DateTime.Now.AddDays(-4) });

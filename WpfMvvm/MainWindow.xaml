@@ -145,7 +145,22 @@
                                 </DataGridTextColumn.CellStyle>
                             </DataGridTextColumn>
                             <DataGridTextColumn Header="사용자명" Binding="{Binding NAME}" Width="100"  />
-                            <DataGridTextColumn Header="고유번호" Binding="{Binding UNIQUE_SEQ}" Width="100"  />
+                            <cc:DataGridNumericColumn Header="고유번호" Binding="{Binding UNIQUE_SEQ}" Width="100"  />
+                            <DataGridComboBoxColumn Header="관리자" Width="100"
+                                                    SelectedValueBinding="{Binding ADMIN_SEQ}"
+                                                    SelectedValuePath="ADMIN_SEQ"
+                                                    DisplayMemberPath="ADMIN_NAME">
+                                <DataGridComboBoxColumn.ElementStyle>
+                                    <Style TargetType="ComboBox">
+                                        <Setter Property="ItemsSource" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.AdminList}"/>
+                                    </Style>
+                                </DataGridComboBoxColumn.ElementStyle>
+                                <DataGridComboBoxColumn.EditingElementStyle>
+                                    <Style TargetType="ComboBox">
+                                        <Setter Property="ItemsSource" Value="{Binding Path=UserAdminList}"/>
+                                    </Style>
+                                </DataGridComboBoxColumn.EditingElementStyle>
+                            </DataGridComboBoxColumn>
 
                             <DataGridTemplateColumn Header="등록일">
                                 <DataGridTemplateColumn.CellTemplate>

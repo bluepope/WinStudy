@@ -14,48 +14,62 @@ using WpfMvvm.Models;
 
 namespace WpfMvvm.CustomLibrary
 {
-    public class CustomList<T> : List<T>, INotifyCollectionChanged, IDisposable
+    public class CustomIList<T> : IList<T>, INotifyCollectionChanged, IDisposable
     {
+        List<T> _list = new List<T>();
         CancellationTokenSource _lastCts;
 
         #region 생성자
-        public CustomList() { }
-        public CustomList(List<T> list) => this.AddRange(list.ConvertAll(p => p)); //deep copy
-        public CustomList(IEnumerable<T> enumerable) { this.AddRange(enumerable); } //deep copy
+        public CustomIList() { }
+        public CustomIList(List<T> list) => this._list = list.ConvertAll(p => p); //deep copy
+        public CustomIList(IList<T> ilist) => this._list = ilist.ToList(); //deep copy
         #endregion
 
-        #region 상속/인터페이스 구현
+        #region 인터페이스 구현
+        public T this[int index] { get => _list[index]; set => _list[index] = value; }
+        public int Count => _list.Count;
+        public bool IsReadOnly => false;
         public event NotifyCollectionChangedEventHandler CollectionChanged;
 
-        public new void Add(T item)
+        public void Add(T item)
         {
-            base.Add(item);
+            _list.Add(item);
             OnNotifyCollectionChanged();
         }
 
-        public new void Clear()
+        public void Clear()
         {
-            base.Clear();
+            _list.Clear();
             OnNotifyCollectionChanged();
         }
-        public new void Insert(int index, T item)
+        public void Insert(int index, T item)
         {
-            base.Insert(index, item);
+            _list.Insert(index, item);
             OnNotifyCollectionChanged();
         }
-        public new bool Remove(T item)
+        public bool Remove(T item)
         {
-            var r = base.Remove(item);
+            var r = _list.Remove(item);
             OnNotifyCollectionChanged();
 
             return r;
         }
 
-        public new void RemoveAt(int index)
+        public void RemoveAt(int index)
         {
-            base.RemoveAt(index);
+            _list.RemoveAt(index);
             OnNotifyCollectionChanged();
         }
+
+        public bool Contains(T item) => _list.Contains(item);
+
+        public void CopyTo(T[] array, int arrayIndex) => _list.CopyTo(array, arrayIndex);
+
+        public IEnumerator<T> GetEnumerator() => _list.GetEnumerator();
+
+        public int IndexOf(T item) =>_list.IndexOf(item);
+
+        IEnumerator IEnumerable.GetEnumerator() =>  _list.GetEnumerator();
 
         public void Dispose()
         {
@@ -63,9 +77,17 @@ namespace WpfMvvm.CustomLibrary
             _lastCts?.Dispose();
             _lastCts = null;
 
-            this.Clear();
+            _list.Clear();
+            _list = null;
         }
 
+        #endregion
+
+        #region 연산자 정의
+        public static implicit operator CustomIList<T>(List<T> list)
+        {
+            return new CustomIList<T>(list);
+        }
         #endregion
 
         #region Notify이벤트 알림
