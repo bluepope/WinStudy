@@ -12,16 +12,12 @@ namespace WinForm.Controls
         public CustomDataGridView()
         {
             this.EditMode = DataGridViewEditMode.EditOnEnter;
+            this.AutoGenerateColumns = false;
         }
 
-        public void AddColumn()
+        public void AddTextColumn(string name, string header)
         {
-
+            this.Columns.Add(new DataGridViewTextBoxColumn() { Name = header, DataPropertyName = name });
         }
-    }
-
-    public class Data
-    {
-
     }
 }
