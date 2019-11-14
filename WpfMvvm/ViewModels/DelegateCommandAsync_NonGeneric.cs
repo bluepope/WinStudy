@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -26,10 +27,10 @@ namespace WpfMvvm.ViewModels
             await executeTargets();
 
             IsExecuting = false;
-            await Application.Current.Dispatcher.InvokeAsync(() =>
+            SynchronizationContext.Current.Post((state) => 
             {
                 CommandManager.InvalidateRequerySuggested();
-            });
+            }, null);
         }
 
         public event EventHandler CanExecuteChanged

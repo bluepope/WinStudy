@@ -5,6 +5,7 @@ using System.Windows.Input;
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace WpfMvvm.ViewModels
 {
@@ -44,10 +45,10 @@ namespace WpfMvvm.ViewModels
             }
 
             IsExecuting = false;
-            await Application.Current.Dispatcher.InvokeAsync(() =>
+            SynchronizationContext.Current.Post((state) =>
             {
                 CommandManager.InvalidateRequerySuggested();
-            });
+            }, null);
             
         }
         public event EventHandler CanExecuteChanged
