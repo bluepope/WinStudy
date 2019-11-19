@@ -92,8 +92,29 @@ namespace WinForm
             using (var form = new Form2())
             {
                 form.ShowDialog();
+            }
+        }
 
-                MessageBox.Show(form.Text1);
+        string _beforeText;
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+            var textbox = (sender as TextBox);
+            var text = textbox.Text;
+            int cursorPos = textbox.SelectionStart;
+
+            ulong result = 0;
+
+            if (string.IsNullOrEmpty(text) == false && ulong.TryParse(text, System.Globalization.NumberStyles.AllowHexSpecifier, System.Globalization.CultureInfo.CurrentCulture, out result) == false)
+            {
+                textbox.Text = _beforeText;
+                //System.Windows.Forms.MessageBox.Show("need hex!");
+
+                textbox.SelectionStart = cursorPos - 1;
+                textbox.SelectionLength = 0;
+            }
+            else
+            {
+                _beforeText = text;
             }
         }
     }

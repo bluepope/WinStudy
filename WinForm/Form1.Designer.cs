@@ -41,6 +41,8 @@
             this.button3 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -85,11 +87,11 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(50, 119);
+            this.button1.Location = new System.Drawing.Point(50, 60);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(76, 22);
+            this.button1.Size = new System.Drawing.Size(76, 81);
             this.button1.TabIndex = 3;
-            this.button1.Text = "button1";
+            this.button1.Text = "뷰모델[0]에 랜덤";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -111,7 +113,7 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(76, 22);
             this.button2.TabIndex = 3;
-            this.button2.Text = "button2";
+            this.button2.Text = "랜덤";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -142,9 +144,9 @@
             // 
             this.button3.Location = new System.Drawing.Point(570, 134);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 27);
+            this.button3.Size = new System.Drawing.Size(75, 58);
             this.button3.TabIndex = 6;
-            this.button3.Text = "button3";
+            this.button3.Text = "뷰모델 랜덤";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
@@ -159,19 +161,38 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(226, 381);
+            this.button4.Location = new System.Drawing.Point(60, 318);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(81, 42);
+            this.button4.Size = new System.Drawing.Size(141, 42);
             this.button4.TabIndex = 8;
-            this.button4.Text = "button4";
+            this.button4.Text = "타이머 테스트";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(351, 413);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(100, 21);
+            this.textBox3.TabIndex = 9;
+            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(349, 398);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(57, 12);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "Only Hex";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1018, 569);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.textBox3);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.button3);
@@ -206,6 +227,8 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Label label4;
     }
 }
 
