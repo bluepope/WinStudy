@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -14,6 +15,7 @@ namespace WinForm
 {
     public partial class Form1 : Form
     {
+        List<MCombo> _combo = new List<MCombo>();
         VMTest1 _viewModel;
 
         public Form1()
@@ -68,6 +70,19 @@ namespace WinForm
                     }));
                 }
             });
+
+
+            _combo.Add(new MCombo() { Value = "v1", Text = "t1" });
+            var bs = new BindingSource();
+            bs.DataSource = _combo;
+
+            this.comboBox1.DisplayMember = "Text";
+            this.comboBox1.ValueMember = "Value";
+            this.comboBox1.DataSource = bs;
+
+            this.comboBox2.DisplayMember = "Text";
+            this.comboBox2.ValueMember = "Value";
+            this.comboBox2.DataSource = bs;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -117,5 +132,19 @@ namespace WinForm
                 _beforeText = text;
             }
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            _combo.Add(new MCombo() { Value = txtValue.Text, Text = txtText.Text });
+
+            (comboBox1.DataSource as BindingSource).ResetBindings(false);
+            (comboBox2.DataSource as BindingSource).ResetBindings(false);
+        }
+    }
+
+    public class MCombo
+    {
+        public string Text { get; set; }
+        public string Value { get; set; }
     }
 }
