@@ -11,10 +11,10 @@ namespace ConsoleKeySender
     class Program
     {
 
-        [DllImport("user32.dll")]
+        [DllImport("user32.dll", CharSet = CharSet.Unicode)]
         public static extern uint FindWindow(string lpClassName, string lpWindowName);
 
-        [DllImport("user32.dll")]
+        [DllImport("user32.dll", CharSet = CharSet.Unicode)]
         public static extern uint FindWindowEx(uint hWnd1, uint hWnd2, string lpsz1, string lpsz2);
 
         [DllImport("user32.dll")]
@@ -33,7 +33,6 @@ namespace ConsoleKeySender
         [STAThread]
         static void Main(string[] args)
         {
-            GCHandle a = 
             uint handle;
 
             //핸들을 찾는다. Spy+를 통해 찾은 클래스 이름과 캡션을 이용하면 된다. 둘 중 하나만 알경우에도 찾을 수 있다. 그때는 하나의 인자를 null로 넘겨 주면된다.
