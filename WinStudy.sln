@@ -21,9 +21,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mp3AutoPlayer", "Mp3AutoPla
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventReceiver", "EventReceiver\EventReceiver.csproj", "{D07238AC-DF54-48B9-B6E8-7D9CD6104249}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BluePope.WpfCore", "BluePope.WpfCore\BluePope.WpfCore.csproj", "{E17524D2-9448-45B2-A4EA-B7A885A00F6E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BluePope.WpfCore", "BluePope.WpfCore\BluePope.WpfCore.csproj", "{E17524D2-9448-45B2-A4EA-B7A885A00F6E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BluePope.WinformCore", "BluePope.WinformCore\BluePope.WinformCore.csproj", "{62B69ED0-8CAD-4485-922E-A2B4A420D8D7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BluePope.WinformCore", "BluePope.WinformCore\BluePope.WinformCore.csproj", "{62B69ED0-8CAD-4485-922E-A2B4A420D8D7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BluePope.GrpcServer", "BluePope.GrpcServer\BluePope.GrpcServer.csproj", "{C6063E26-5A2E-496D-91F3-E31AC89EAD86}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +77,10 @@ Global
 		{62B69ED0-8CAD-4485-922E-A2B4A420D8D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{62B69ED0-8CAD-4485-922E-A2B4A420D8D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{62B69ED0-8CAD-4485-922E-A2B4A420D8D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6063E26-5A2E-496D-91F3-E31AC89EAD86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6063E26-5A2E-496D-91F3-E31AC89EAD86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6063E26-5A2E-496D-91F3-E31AC89EAD86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6063E26-5A2E-496D-91F3-E31AC89EAD86}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
