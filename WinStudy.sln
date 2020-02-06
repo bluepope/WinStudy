@@ -19,13 +19,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp1", "WpfApp1\WpfApp1.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mp3AutoPlayer", "Mp3AutoPlayer\Mp3AutoPlayer.csproj", "{AFEF1652-C7AA-496F-9929-BBF75A9F0C64}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventReceiver", "EventReceiver\EventReceiver.csproj", "{D07238AC-DF54-48B9-B6E8-7D9CD6104249}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BluePope.WpfCore", "BluePope.WpfCore\BluePope.WpfCore.csproj", "{E17524D2-9448-45B2-A4EA-B7A885A00F6E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BluePope.WinformCore", "BluePope.WinformCore\BluePope.WinformCore.csproj", "{62B69ED0-8CAD-4485-922E-A2B4A420D8D7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BluePope.GrpcServer", "BluePope.GrpcServer\BluePope.GrpcServer.csproj", "{C6063E26-5A2E-496D-91F3-E31AC89EAD86}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BluePope.GrpcServer", "BluePope.GrpcServer\BluePope.GrpcServer.csproj", "{C6063E26-5A2E-496D-91F3-E31AC89EAD86}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -65,10 +63,6 @@ Global
 		{AFEF1652-C7AA-496F-9929-BBF75A9F0C64}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AFEF1652-C7AA-496F-9929-BBF75A9F0C64}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AFEF1652-C7AA-496F-9929-BBF75A9F0C64}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D07238AC-DF54-48B9-B6E8-7D9CD6104249}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D07238AC-DF54-48B9-B6E8-7D9CD6104249}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D07238AC-DF54-48B9-B6E8-7D9CD6104249}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D07238AC-DF54-48B9-B6E8-7D9CD6104249}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E17524D2-9448-45B2-A4EA-B7A885A00F6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E17524D2-9448-45B2-A4EA-B7A885A00F6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E17524D2-9448-45B2-A4EA-B7A885A00F6E}.Release|Any CPU.ActiveCfg = Release|Any CPU

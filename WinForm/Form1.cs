@@ -27,6 +27,12 @@ namespace WinForm
         {
             base.OnLoad(e);
 
+            this.button6.Click += async (s, evt) =>
+            {
+                await this.button6_Click(s, evt);
+            };
+
+
             _viewModel = new VMTest1();
             _viewModel.SetRandom();
 
@@ -139,6 +145,23 @@ namespace WinForm
 
             (comboBox1.DataSource as BindingSource).ResetBindings(false);
             (comboBox2.DataSource as BindingSource).ResetBindings(false);
+        }
+
+        private async Task button6_Click(object sender, EventArgs e)
+        {
+            (sender as Button).Enabled = false;
+            await Task.Delay(5000);
+            (sender as Button).Enabled = true;
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            Task.Run(async () =>
+            {
+                (sender as Button).Enabled = false;
+                await Task.Delay(5000);
+                (sender as Button).Enabled = true;
+            });
         }
     }
 
