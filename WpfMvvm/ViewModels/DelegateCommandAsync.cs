@@ -25,7 +25,10 @@ namespace WpfMvvm.ViewModels
                 return;
 
             IsExecuting = true;
-            CommandManager.InvalidateRequerySuggested();
+            SynchronizationContext.Current.Post((state) =>
+            {
+                CommandManager.InvalidateRequerySuggested();
+            }, null);
 
             if (parameter?.GetType().Name == "SelectedItemCollection")
             {
