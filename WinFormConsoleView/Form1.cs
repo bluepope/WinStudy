@@ -14,7 +14,8 @@ namespace WinFormConsoleView
 {
     public partial class Form1 : Form
     {
-        private static StringBuilder cmdOutput = null;
+        private StringBuilder cmdOutput = null;
+        bool _isFirstRowDelete = false;
         FixedProcess cmdProcess;
         StreamWriter cmdStreamWriter;
 
@@ -50,6 +51,12 @@ namespace WinFormConsoleView
 
         private void CmdProcess_OutputDataReceived(object sender, DataReceivedEventArgs e)
         {
+            if (_isFirstRowDelete)
+            {
+                _isFirstRowDelete = false;
+                return;
+            }
+
             if (e.Data != null)
             {
                 cmdOutput.Append(e.Data);
@@ -70,7 +77,8 @@ namespace WinFormConsoleView
         {
             if (!string.IsNullOrWhiteSpace(textBox1.Text))
             {
-                //cmdOutput.Clear();
+                _isFirstRowDelete = true;
+                cmdOutput.Clear();
                 cmdStreamWriter.WriteLine(textBox1.Text);
                 textBox1.Text = "";
             }
