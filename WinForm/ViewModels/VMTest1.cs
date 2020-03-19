@@ -1,6 +1,7 @@
 ﻿using PropertyChanged;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using WinForm.Models;
 
@@ -24,7 +25,7 @@ namespace WinForm.ViewModels
 
         public List<KeyValuePair<string, string>> List1 { get; set; } = new List<KeyValuePair<string, string>>();
 
-        public List<MUser> UserList { get; set; }
+        public BindingList<MUser> UserList { get; set; }
 
         public VMTest1()
         {
@@ -35,7 +36,7 @@ namespace WinForm.ViewModels
 
             List1SelectedValue = "222";
 
-            UserList = new List<MUser>();
+            UserList = new BindingList<MUser>();
             UserList.Add(new MUser() { USER_ID = "a1", UNIQUE_SEQ = 1, REG_DATE = DateTime.Now.AddDays(-1) });
             UserList.Add(new MUser() { USER_ID = "b2", NAME = "고길동", UNIQUE_SEQ = 2, REG_DATE = DateTime.Now.AddDays(-2) });
             UserList.Add(new MUser() { USER_ID = "c3", NAME = "홍길홍", UNIQUE_SEQ = 3, REG_DATE = DateTime.Now.AddDays(-3) });

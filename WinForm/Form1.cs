@@ -27,10 +27,7 @@ namespace WinForm
         {
             base.OnLoad(e);
 
-            this.button6.Click += async (s, evt) =>
-            {
-                await this.button6_Click(s, evt);
-            };
+            this.button6.Click += async (s, evt) => await this.button6_Click(s, evt);
 
 
             _viewModel = new VMTest1();
@@ -49,36 +46,23 @@ namespace WinForm
             
             var bind = textBox1.DataBindings.Add("Text", _viewModel.UserList, "UNIQUE_SEQ", true, DataSourceUpdateMode.OnPropertyChanged);
             bind.ControlUpdateMode = ControlUpdateMode.OnPropertyChanged;
-            bind.Parse += (s, evt) => dataGridView1.Refresh();
 
             textBox2.DataBindings.Add("Text", _viewModel, "Text1");
+            textBox4.DataBindings.Add("Text", _viewModel, "Text1");
 
             //실시간 업데이트에 대한 테스트
-            dataGridView1.EditingControlShowing += (s, evt) =>
-            {
-                evt.Control.KeyUp += (s2, evt2) =>
-                {
-                    var cell = (s as DataGridView).CurrentCell;
-                    _viewModel.UserList[cell.RowIndex].UNIQUE_SEQ = Convert.ToInt32((s2 as DataGridViewTextBoxEditingControl).Text);
-                    bind.ReadValue();
-                };
-            };
-            
             Task.Run(() => {
                 for(int i=0; i < 100; i++)
                 {
                     Thread.Sleep(100);
                     _viewModel.UserList[0].UNIQUE_SEQ = new Random().Next(100);
-
-                    dataGridView1.Invoke(new MethodInvoker(() => {
-                        bind.ReadValue();
-                        dataGridView1.Refresh();
-                    }));
                 }
             });
 
 
             _combo.Add(new MCombo() { Value = "v1", Text = "t1" });
+            _combo.Add(new MCombo() { Value = "v2", Text = "t2" });
+            _combo.Add(new MCombo() { Value = "v3", Text = "t3" });
             var bs = new BindingSource();
             bs.DataSource = _combo;
 
@@ -94,7 +78,6 @@ namespace WinForm
         private void button1_Click(object sender, EventArgs e)
         {
             _viewModel.UserList[0].NAME = new Random().Next(100).ToString();
-            dataGridView1.Refresh();
         }
 
         private void button2_Click(object sender, EventArgs e)
