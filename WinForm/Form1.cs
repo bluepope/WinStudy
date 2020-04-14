@@ -146,6 +146,13 @@ namespace WinForm
                 (sender as Button).Enabled = true;
             });
         }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            int rowIdx = new Random().Next(dataGridView1.Rows.Count - 1);
+
+            dataGridView1.CurrentCell = dataGridView1.Rows[rowIdx].Cells[0];
+        }
     }
 
     public class MCombo
