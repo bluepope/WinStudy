@@ -21,7 +21,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mp3AutoPlayer", "Mp3AutoPla
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinFormConsoleView", "WinFormConsoleView\WinFormConsoleView.csproj", "{F88DA1F7-04DA-43C7-9BCF-AA96B907C91E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfCore", "WpfCore\WpfCore.csproj", "{FC792AB7-237D-4DC8-A566-D800050A4163}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfCore", "WpfCore\WpfCore.csproj", "{FC792AB7-237D-4DC8-A566-D800050A4163}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinCore", "WinCore\WinCore.csproj", "{AA49D47C-2FF2-4571-A29A-DBAB6A784784}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +71,10 @@ Global
 		{FC792AB7-237D-4DC8-A566-D800050A4163}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC792AB7-237D-4DC8-A566-D800050A4163}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FC792AB7-237D-4DC8-A566-D800050A4163}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA49D47C-2FF2-4571-A29A-DBAB6A784784}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA49D47C-2FF2-4571-A29A-DBAB6A784784}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA49D47C-2FF2-4571-A29A-DBAB6A784784}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA49D47C-2FF2-4571-A29A-DBAB6A784784}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

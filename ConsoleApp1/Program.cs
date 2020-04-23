@@ -11,7 +11,8 @@ namespace ConsoleApp1
         {
             //new BigFileTest().Run();
             //new DbTest().Run();
-            new BigNumberTest().Run();
+            //new BigNumberTest().Run();
+            new JsonTest().Run();
         }
     }
 }
