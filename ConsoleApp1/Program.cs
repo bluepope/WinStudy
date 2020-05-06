@@ -12,7 +12,9 @@ namespace ConsoleApp1
             //new BigFileTest().Run();
             //new DbTest().Run();
             //new BigNumberTest().Run();
-            new JsonTest().Run();
+            //new JsonTest().Run();
+
+            new PostgreSqlBulkInsertTest().Run();
         }
     }
 }
