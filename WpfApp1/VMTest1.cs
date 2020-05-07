@@ -16,19 +16,22 @@ using System.Windows.Threading;
 
 namespace WpfApp1
 {
-    class VMTest1 : INotifyPropertyChanged
+    class VMTest1 : BaseModel
     {
-        string __text1;
-        public string Text1 { get => __text1; set { __text1 = value; OnPropertyChanged(); } }
+        string _text1;
+        public string Text1 { get => _text1; set { _text1 = value; OnPropertyChanged(); } }
 
-        int __num1;
-        public int Num1 { get => __num1; set { __num1 = value; OnPropertyChanged(); } }
+        int _num1;
+        public int Num1 { get => _num1; set { _num1 = value; OnPropertyChanged(); } }
 
-        int __num2;
-        public int Num2 { get => __num2; set { __num2 = value; OnPropertyChanged(); } }
+        int _num2;
+        public int Num2 { get => _num2; set { _num2 = value; OnPropertyChanged(); } }
 
-        public bool Check1 { get; set; }
-        public bool Check2 { get; set; }
+        bool _check1 = false;
+        public bool Check1 { get => _check1; set { _check1 = value; OnPropertyChanged(); } }
+
+        bool _check2 = false;
+        public bool Check2 { get => _check2; set { _check2 = value; OnPropertyChanged(); } }
 
         public string List1SelectedValue { get; set; }
 
@@ -42,15 +45,6 @@ namespace WpfApp1
         public VMTest1()
         {
             Button1Command.ExecuteTargets += Button1Command_ExecuteTargets;
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            if (propertyName != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
         }
 
         private void Button1Command_ExecuteTargets(object obj)
