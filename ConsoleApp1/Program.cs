@@ -1,6 +1,7 @@
 ﻿using ConsoleApp1.Test;
 using System;
 using System.Data;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ConsoleApp1
@@ -13,8 +14,9 @@ namespace ConsoleApp1
             //new DbTest().Run();
             //new BigNumberTest().Run();
             //new JsonTest().Run();
+            //new PostgreSqlBulkInsertTest().Run();
 
-            new PostgreSqlBulkInsertTest().Run();
+            new ArraySliceTest().Run();
         }
     }
 }
