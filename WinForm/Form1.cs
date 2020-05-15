@@ -41,11 +41,15 @@ namespace WinForm
             this.dataGridView1.Columns.Add(new DataGridViewTextBoxColumn() { Name = "이름", DataPropertyName = "NAME" });
             this.dataGridView1.Columns.Add(new DataGridViewTextBoxColumn() { Name = "고유번호", DataPropertyName = "UNIQUE_SEQ" });
             this.dataGridView1.Columns.Add(new DataGridViewTextBoxColumn() { Name = "생성일자", DataPropertyName = "REG_DATE" });
-           
+            this.dataGridView1.Columns.Add(new DataGridViewCheckBoxColumn() { Name = "로그인가능", DataPropertyName = "USE_LOGIN" });
+
             this.dataGridView1.DataSource = _viewModel.UserList;
-            
+            this.dataGridView1.CellContentClick += DataGridView1_CellContentClick;
+            this.dataGridView1.CellValueChanged += DataGridView1_CellValueChanged;
+
             var bind = textBox1.DataBindings.Add("Text", _viewModel.UserList, "UNIQUE_SEQ", true, DataSourceUpdateMode.OnPropertyChanged);
             bind.ControlUpdateMode = ControlUpdateMode.OnPropertyChanged;
+            _
 
             textBox2.DataBindings.Add("Text", _viewModel, "Text1");
             textBox4.DataBindings.Add("Text", _viewModel, "Text1");
@@ -73,6 +77,15 @@ namespace WinForm
             this.comboBox2.DisplayMember = "Text";
             this.comboBox2.ValueMember = "Value";
             this.comboBox2.DataSource = bs;
+        }
+
+        private void DataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            (sender as DataGridView).CommitEdit(DataGridViewDataErrorContexts.Commit);
+        }
+
+        private void DataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
         }
 
         private void button1_Click(object sender, EventArgs e)

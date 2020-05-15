@@ -21,5 +21,7 @@ namespace WinForm.Models
         public string NAME { get; set; }
         public int UNIQUE_SEQ { get; set; }
         public DateTime REG_DATE { get; set; }
+
+        public bool USE_LOGIN { get; set; }
     }
 }
