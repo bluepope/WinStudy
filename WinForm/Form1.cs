@@ -49,7 +49,6 @@ namespace WinForm
 
             var bind = textBox1.DataBindings.Add("Text", _viewModel.UserList, "UNIQUE_SEQ", true, DataSourceUpdateMode.OnPropertyChanged);
             bind.ControlUpdateMode = ControlUpdateMode.OnPropertyChanged;
-            _
 
             textBox2.DataBindings.Add("Text", _viewModel, "Text1");
             textBox4.DataBindings.Add("Text", _viewModel, "Text1");
