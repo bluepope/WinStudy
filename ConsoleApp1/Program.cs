@@ -1,6 +1,7 @@
 ﻿using ConsoleApp1.Test;
 using System;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -16,7 +17,19 @@ namespace ConsoleApp1
             //new JsonTest().Run();
             //new PostgreSqlBulkInsertTest().Run();
 
-            new ArraySliceTest().Run();
+            //new ArraySliceTest().Run();
+
+            //new HiResTimer().Run();
+
+            //브라우저 실행하기
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = "http://www.google.com",
+                UseShellExecute = true
+            });
+
+            Console.ReadKey();
+
         }
     }
 }
