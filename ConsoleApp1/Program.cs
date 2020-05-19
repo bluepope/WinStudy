@@ -19,15 +19,16 @@ namespace ConsoleApp1
 
             //new ArraySliceTest().Run();
 
-            //new HiResTimer().Run();
+            new HiResTimer().Run();
 
             //브라우저 실행하기
+            /*
             Process.Start(new ProcessStartInfo
             {
                 FileName = "http://www.google.com",
                 UseShellExecute = true
             });
-
+            */
             Console.ReadKey();
 
         }

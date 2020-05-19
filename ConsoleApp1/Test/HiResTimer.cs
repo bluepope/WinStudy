@@ -10,12 +10,13 @@ namespace ConsoleApp1.Test
 {
     class HiResTimer
     {
+        Thread _timerThread;
         public void Run()
         {
-            Task.Run(() => {
+            _timerThread = new Thread(() => {
                 var stopWatch = Stopwatch.StartNew();
                 long ms = stopWatch.ElapsedMilliseconds;
-                
+
                 while (true)
                 {
                     if (stopWatch.ElapsedMilliseconds - ms >= 10)
@@ -27,6 +28,14 @@ namespace ConsoleApp1.Test
                     }
                 }
             });
+
+            _timerThread.Start();
+
+            for(int i=0; i < 100; i++)
+            {
+                Thread.Sleep(100);
+                Console.WriteLine($"테스트{i}");
+            }
         }
     }
 }
