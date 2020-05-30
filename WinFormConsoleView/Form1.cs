@@ -42,7 +42,7 @@ namespace WinFormConsoleView
             cmdProcess.OutputDataReceived += CmdProcess_OutputDataReceived;
             cmdProcess.EnableRaisingEvents = true;
             cmdProcess.Exited += CmdProcess_Exited;
-
+            
             cmdProcess.Start();
 
             cmdStreamWriter = cmdProcess.StandardInput;

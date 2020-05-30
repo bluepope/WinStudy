@@ -18,8 +18,8 @@ namespace ConsoleApp1
             //new PostgreSqlBulkInsertTest().Run();
 
             //new ArraySliceTest().Run();
-
-            new HiResTimer().Run();
+            //new StringJoinTest().Run();
+            //new HiResTimer().Run();
 
             //브라우저 실행하기
             /*
@@ -29,6 +29,9 @@ namespace ConsoleApp1
                 UseShellExecute = true
             });
             */
+
+            new HMacTest().Run();
+
             Console.ReadKey();
 
         }
