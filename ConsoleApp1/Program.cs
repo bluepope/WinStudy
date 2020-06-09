@@ -3,6 +3,7 @@ using System;
 using System.Data;
 using System.Diagnostics;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 
 namespace ConsoleApp1
@@ -29,6 +30,7 @@ namespace ConsoleApp1
             });
             */
 
+            //new HMacTest().Run();
             new SystemInfoTest().Run();
 
             Console.ReadKey();
