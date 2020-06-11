@@ -31,7 +31,13 @@ namespace WpfCore
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             _viewModel.Text1 = new Random().Next(1000000).ToString();
+            _viewModel.Text2 = new Random().Next(1000000).ToString();
             _viewModel.Num1 = new Random().Next(100);
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            _viewModel.RefreshProperties();
         }
     }
 
@@ -43,5 +49,7 @@ namespace WpfCore
 
         int _num1;
         public int Num1 { get => _num1; set { _num1 = value; OnPropertyChanged(); } }
+
+        public string Text2 { get; set; }
     }
 }

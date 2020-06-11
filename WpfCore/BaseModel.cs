@@ -10,12 +10,26 @@ namespace WpfCore
 {
     public abstract class BaseModel : INotifyPropertyChanged
     {
+        public string[] _propertyNameArray;
+        public BaseModel()
+        {
+            _propertyNameArray = this.GetType().GetProperties().Select(p => p.Name).ToArray();
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             if (propertyName != null)
             {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+
+        public void RefreshProperties()
+        {
+            foreach(string propertyName in _propertyNameArray)
+            {
+                OnPropertyChanged(propertyName);
             }
         }
     }
