@@ -32,6 +32,8 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.chkHold = new System.Windows.Forms.CheckBox();
+            this.btnMoving = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -62,16 +64,37 @@
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(12, 44);
+            this.progressBar1.Location = new System.Drawing.Point(12, 35);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(250, 84);
+            this.progressBar1.Size = new System.Drawing.Size(250, 31);
             this.progressBar1.TabIndex = 3;
+            // 
+            // chkHold
+            // 
+            this.chkHold.AutoSize = true;
+            this.chkHold.Location = new System.Drawing.Point(442, 8);
+            this.chkHold.Name = "chkHold";
+            this.chkHold.Size = new System.Drawing.Size(110, 19);
+            this.chkHold.TabIndex = 4;
+            this.chkHold.Text = "고정하시옵소서";
+            this.chkHold.UseVisualStyleBackColor = true;
+            // 
+            // btnMoving
+            // 
+            this.btnMoving.Location = new System.Drawing.Point(203, 117);
+            this.btnMoving.Name = "btnMoving";
+            this.btnMoving.Size = new System.Drawing.Size(154, 41);
+            this.btnMoving.TabIndex = 5;
+            this.btnMoving.Text = "크기에 따라 움직임";
+            this.btnMoving.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(564, 231);
+            this.Controls.Add(this.btnMoving);
+            this.Controls.Add(this.chkHold);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox1);
@@ -89,6 +112,8 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.CheckBox chkHold;
+        private System.Windows.Forms.Button btnMoving;
     }
 }
 
