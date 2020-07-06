@@ -20,6 +20,18 @@ namespace WinFormCore
             InitializeComponent();
 
             progressBar1.Maximum = 100;
+
+            this.ResizeEnd += Form1_ResizeEnd;
+        }
+
+        private void Form1_ResizeEnd(object sender, EventArgs e)
+        {
+            if (chkHold.Checked == false)
+            {
+                btnMoving.Location = new Point(
+                    (this.Width / 2) - (btnMoving.Width / 2),
+                    (this.Height / 2) - (btnMoving.Height / 2));
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
