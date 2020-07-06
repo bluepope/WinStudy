@@ -31,7 +31,9 @@ namespace ConsoleApp1
             */
 
             //new HMacTest().Run();
-            new SystemInfoTest().Run();
+            //new SystemInfoTest().Run();
+
+            new PropertyTest().Run();
 
             Console.ReadKey();
 
