@@ -165,6 +165,12 @@ namespace WinForm
 
             dataGridView1.CurrentCell = dataGridView1.Rows[rowIdx].Cells[0];
         }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            var form = new Form3();
+            form.Show();
+        }
     }
 
     public class MCombo

@@ -1,5 +1,4 @@
-﻿using PropertyChanged;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -7,7 +6,6 @@ using WinForm.Models;
 
 namespace WinForm.ViewModels
 {
-    [AddINotifyPropertyChangedInterface]
     class VMTest1
     {
         public string Text1 { get; set; }
