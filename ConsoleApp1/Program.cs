@@ -39,7 +39,9 @@ namespace ConsoleApp1
 
             //new RegexTest().Run();
 
-            new JsonConvertPrivateSetterTest().Run();
+            //new JsonConvertPrivateSetterTest().Run();
+
+            new XssCheckerTest().Run();
 
             Console.ReadKey();
         }
