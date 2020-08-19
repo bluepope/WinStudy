@@ -30,6 +30,8 @@ namespace WpfMvvm.ViewModels
         public bool Check1 { get; set; }
         public bool Check2 { get; set; }
 
+        public string CheckYN { get; set; } = "Y";
+
         public string List1SelectedValue { get; set; }
 
         public DateTime DateTime1 { get; set; } = DateTime.Now;

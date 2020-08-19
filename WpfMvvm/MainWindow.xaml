@@ -14,6 +14,7 @@
         <converter:DateTimeToStringConverter x:Key="dateTimeToStringConverter"/>
         <converter:StringToDateTimeConverter x:Key="stringToDateTimeConverter"/>
         <converter:BoolInverterConverter x:Key="boolInverterConverter"/>
+        <converter:YnToBoolConverter x:Key="ynToBoolConverter"/>
     </Window.Resources>
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
         <Grid>
@@ -87,7 +88,7 @@
                     <Label Content="생성값" HorizontalAlignment="Left" Height="27" Margin="0,0,0,0" VerticalAlignment="Top" Width="76"/>
                     <TextBlock Margin="0,35,0,0" TextWrapping="Wrap" HorizontalAlignment="Left" Width="202" Height="183" VerticalAlignment="Top">
                         <TextBlock.Text>
-                            <MultiBinding StringFormat="{}Text1: {0}&#xA;Num1: {1}&#xA;Num2: {2}&#xA;Check1: {3}&#xA;Check2: {4}&#xA;List1SelectedValue: {5}&#xA;DateTime1: {6:yyyy-MM-dd}&#xA;DateText1: {7}">
+                            <MultiBinding StringFormat="{}Text1: {0}&#xA;Num1: {1}&#xA;Num2: {2}&#xA;Check1: {3}&#xA;Check2: {4}&#xA;List1SelectedValue: {5}&#xA;DateTime1: {6:yyyy-MM-dd}&#xA;DateText1: {7}&#xA;CheckYN: {8}">
                                 <Binding Path="Text1"/>
                                 <Binding Path="Num1"/>
                                 <Binding Path="Num2"/>
@@ -96,6 +97,7 @@
                                 <Binding Path="List1SelectedValue"/>
                                 <Binding Path="DateTime1"/>
                                 <Binding Path="DateText1"/>
+                                <Binding Path="CheckYN"/>
                             </MultiBinding>
                         </TextBlock.Text>
                     </TextBlock>
@@ -189,6 +191,7 @@
 
                 </Grid>
             </GroupBox>
+            <CheckBox Content="Y or N" HorizontalAlignment="Left" Height="23" Margin="115,108,0,0" VerticalAlignment="Top" Width="95" IsChecked="{Binding CheckYN,  Converter={StaticResource ynToBoolConverter}}" />
         </Grid>
     </ScrollViewer>
 </Window>
