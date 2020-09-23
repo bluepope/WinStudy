@@ -9,58 +9,62 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using WinFormCore.Models;
+
 namespace WinFormCore
 {
     public partial class Form1 : Form
     {
-        CancellationTokenSource _cts = null;
+        BindingList<TestModel> _viewModel;
 
         public Form1()
         {
             InitializeComponent();
-
-            progressBar1.Maximum = 100;
-
-            this.ResizeEnd += Form1_ResizeEnd;
         }
 
-        private void Form1_ResizeEnd(object sender, EventArgs e)
+        protected override void OnLoad(EventArgs e)
         {
-            if (chkHold.Checked == false)
-            {
-                btnMoving.Location = new Point(
-                    (this.Width / 2) - (btnMoving.Width / 2),
-                    (this.Height / 2) - (btnMoving.Height / 2));
-            }
+            base.OnLoad(e);
+
+            popeGrid1.AddColumn("Col1", "컬럼1", 50, WinFormCore.Controls.PopeGrid.ColType.OnlyNewEdit);
+            popeGrid1.AddColumn("Col2", "컬럼2", 50, WinFormCore.Controls.PopeGrid.ColType.Edit);
+            popeGrid1.AddColumn("RowState", "Row상태", 50, WinFormCore.Controls.PopeGrid.ColType.ReadOnly);
+
+            _viewModel = TestModel.GetList();
+
+            popeGrid1.DataSource = _viewModel;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void popeButton1_Click(object sender, EventArgs e)
         {
-            if (_cts != null)
+            _viewModel[1] = new TestModel() { Col1 = "random", Col2 = new Random().Next(1000).ToString() };
+        }
+
+        private void popeButton2_Click(object sender, EventArgs e)
+        {
+            _viewModel[0].Col2 = new Random().Next(1000).ToString();
+        }
+
+        private void popeButton3_Click(object sender, EventArgs e)
+        {
+            Task.Run(async () =>
             {
-                _cts.Cancel();
-            }
-
-            var cts = new CancellationTokenSource();
-
-            Task.Run(async () => {
-                for(int i=0; i <= 100; i += 10)
+                for (int i = 0; i < 10; i++)
                 {
-                    if (cts.IsCancellationRequested)
-                        return;
-
-                    progressBar1.Invoke(new MethodInvoker(() =>
-                    {
-                        progressBar1.Value = i;
-                    }));
-
+                    _viewModel[0].Col2 = new Random().Next(1000).ToString();
                     await Task.Delay(500);
                 }
-            }, cts.Token);
+            });
+        }
 
-            _cts = cts;
-            
-            //textBox1.Text = "test";
+        private void popeButton4_Click(object sender, EventArgs e)
+        {
+            popeGrid1.AddRow();
+        }
+
+        private void popeButton5_Click(object sender, EventArgs e)
+        {
+            popeGrid1.DeleteRow();
         }
     }
 }

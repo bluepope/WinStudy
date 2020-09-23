@@ -28,92 +28,117 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.chkHold = new System.Windows.Forms.CheckBox();
-            this.btnMoving = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.popeButton4 = new WinFormCore.Controls.PopeButton();
+            this.popeButton3 = new WinFormCore.Controls.PopeButton();
+            this.popeButton2 = new WinFormCore.Controls.PopeButton();
+            this.popeButton1 = new WinFormCore.Controls.PopeButton();
+            this.popeGrid1 = new WinFormCore.Controls.PopeGrid();
+            this.popeButton5 = new WinFormCore.Controls.PopeButton();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.popeGrid1)).BeginInit();
             this.SuspendLayout();
             // 
-            // button1
+            // panel1
             // 
-            this.button1.Location = new System.Drawing.Point(186, 5);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(92, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.panel1.Controls.Add(this.popeButton5);
+            this.panel1.Controls.Add(this.popeButton4);
+            this.panel1.Controls.Add(this.popeButton3);
+            this.panel1.Controls.Add(this.popeButton2);
+            this.panel1.Controls.Add(this.popeButton1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(721, 66);
+            this.panel1.TabIndex = 2;
             // 
-            // textBox1
+            // popeButton4
             // 
-            this.textBox1.Location = new System.Drawing.Point(57, 6);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(123, 23);
-            this.textBox1.TabIndex = 1;
+            this.popeButton4.Location = new System.Drawing.Point(384, 12);
+            this.popeButton4.Name = "popeButton4";
+            this.popeButton4.Size = new System.Drawing.Size(118, 41);
+            this.popeButton4.TabIndex = 1;
+            this.popeButton4.Text = "Add";
+            this.popeButton4.UseVisualStyleBackColor = true;
+            this.popeButton4.Click += new System.EventHandler(this.popeButton4_Click);
             // 
-            // label1
+            // popeButton3
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(39, 15);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "label1";
+            this.popeButton3.Location = new System.Drawing.Point(260, 12);
+            this.popeButton3.Name = "popeButton3";
+            this.popeButton3.Size = new System.Drawing.Size(118, 41);
+            this.popeButton3.TabIndex = 1;
+            this.popeButton3.Text = "Task 10 Time";
+            this.popeButton3.UseVisualStyleBackColor = true;
+            this.popeButton3.Click += new System.EventHandler(this.popeButton3_Click);
             // 
-            // progressBar1
+            // popeButton2
             // 
-            this.progressBar1.Location = new System.Drawing.Point(12, 35);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(250, 31);
-            this.progressBar1.TabIndex = 3;
+            this.popeButton2.Location = new System.Drawing.Point(136, 12);
+            this.popeButton2.Name = "popeButton2";
+            this.popeButton2.Size = new System.Drawing.Size(118, 41);
+            this.popeButton2.TabIndex = 1;
+            this.popeButton2.Text = "cellChange";
+            this.popeButton2.UseVisualStyleBackColor = true;
+            this.popeButton2.Click += new System.EventHandler(this.popeButton2_Click);
             // 
-            // chkHold
+            // popeButton1
             // 
-            this.chkHold.AutoSize = true;
-            this.chkHold.Location = new System.Drawing.Point(442, 8);
-            this.chkHold.Name = "chkHold";
-            this.chkHold.Size = new System.Drawing.Size(110, 19);
-            this.chkHold.TabIndex = 4;
-            this.chkHold.Text = "고정하시옵소서";
-            this.chkHold.UseVisualStyleBackColor = true;
+            this.popeButton1.Location = new System.Drawing.Point(12, 12);
+            this.popeButton1.Name = "popeButton1";
+            this.popeButton1.Size = new System.Drawing.Size(118, 41);
+            this.popeButton1.TabIndex = 1;
+            this.popeButton1.Text = "rowChange";
+            this.popeButton1.UseVisualStyleBackColor = true;
+            this.popeButton1.Click += new System.EventHandler(this.popeButton1_Click);
             // 
-            // btnMoving
+            // popeGrid1
             // 
-            this.btnMoving.Location = new System.Drawing.Point(203, 117);
-            this.btnMoving.Name = "btnMoving";
-            this.btnMoving.Size = new System.Drawing.Size(154, 41);
-            this.btnMoving.TabIndex = 5;
-            this.btnMoving.Text = "크기에 따라 움직임";
-            this.btnMoving.UseVisualStyleBackColor = true;
+            this.popeGrid1.AllowUserToAddRows = false;
+            this.popeGrid1.AllowUserToDeleteRows = false;
+            this.popeGrid1.AllowUserToOrderColumns = true;
+            this.popeGrid1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.popeGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.popeGrid1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+            this.popeGrid1.Location = new System.Drawing.Point(0, 66);
+            this.popeGrid1.Name = "popeGrid1";
+            this.popeGrid1.Size = new System.Drawing.Size(721, 323);
+            this.popeGrid1.TabIndex = 0;
+            this.popeGrid1.Text = "popeGrid1";
+            // 
+            // popeButton5
+            // 
+            this.popeButton5.Location = new System.Drawing.Point(508, 12);
+            this.popeButton5.Name = "popeButton5";
+            this.popeButton5.Size = new System.Drawing.Size(118, 41);
+            this.popeButton5.TabIndex = 1;
+            this.popeButton5.Text = "Delete";
+            this.popeButton5.UseVisualStyleBackColor = true;
+            this.popeButton5.Click += new System.EventHandler(this.popeButton5_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(564, 231);
-            this.Controls.Add(this.btnMoving);
-            this.Controls.Add(this.chkHold);
-            this.Controls.Add(this.progressBar1);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(721, 389);
+            this.Controls.Add(this.popeGrid1);
+            this.Controls.Add(this.panel1);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.popeGrid1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ProgressBar progressBar1;
-        private System.Windows.Forms.CheckBox chkHold;
-        private System.Windows.Forms.Button btnMoving;
+        private System.Windows.Forms.Panel panel1;
+        private Controls.PopeButton popeButton1;
+        private Controls.PopeGrid popeGrid1;
+        private Controls.PopeButton popeButton2;
+        private Controls.PopeButton popeButton3;
+        private Controls.PopeButton popeButton4;
+        private Controls.PopeButton popeButton5;
     }
 }
 
