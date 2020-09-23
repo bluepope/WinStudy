@@ -29,18 +29,20 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.popeButton5 = new WinFormCore.Controls.PopeButton();
             this.popeButton4 = new WinFormCore.Controls.PopeButton();
             this.popeButton3 = new WinFormCore.Controls.PopeButton();
             this.popeButton2 = new WinFormCore.Controls.PopeButton();
             this.popeButton1 = new WinFormCore.Controls.PopeButton();
             this.popeGrid1 = new WinFormCore.Controls.PopeGrid();
-            this.popeButton5 = new WinFormCore.Controls.PopeButton();
+            this.popeButton6 = new WinFormCore.Controls.PopeButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.popeGrid1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.popeButton6);
             this.panel1.Controls.Add(this.popeButton5);
             this.panel1.Controls.Add(this.popeButton4);
             this.panel1.Controls.Add(this.popeButton3);
@@ -52,11 +54,21 @@
             this.panel1.Size = new System.Drawing.Size(721, 66);
             this.panel1.TabIndex = 2;
             // 
+            // popeButton5
+            // 
+            this.popeButton5.Location = new System.Drawing.Point(476, 12);
+            this.popeButton5.Name = "popeButton5";
+            this.popeButton5.Size = new System.Drawing.Size(84, 41);
+            this.popeButton5.TabIndex = 1;
+            this.popeButton5.Text = "Delete";
+            this.popeButton5.UseVisualStyleBackColor = true;
+            this.popeButton5.Click += new System.EventHandler(this.popeButton5_Click);
+            // 
             // popeButton4
             // 
             this.popeButton4.Location = new System.Drawing.Point(384, 12);
             this.popeButton4.Name = "popeButton4";
-            this.popeButton4.Size = new System.Drawing.Size(118, 41);
+            this.popeButton4.Size = new System.Drawing.Size(86, 41);
             this.popeButton4.TabIndex = 1;
             this.popeButton4.Text = "Add";
             this.popeButton4.UseVisualStyleBackColor = true;
@@ -106,15 +118,15 @@
             this.popeGrid1.TabIndex = 0;
             this.popeGrid1.Text = "popeGrid1";
             // 
-            // popeButton5
+            // popeButton6
             // 
-            this.popeButton5.Location = new System.Drawing.Point(508, 12);
-            this.popeButton5.Name = "popeButton5";
-            this.popeButton5.Size = new System.Drawing.Size(118, 41);
-            this.popeButton5.TabIndex = 1;
-            this.popeButton5.Text = "Delete";
-            this.popeButton5.UseVisualStyleBackColor = true;
-            this.popeButton5.Click += new System.EventHandler(this.popeButton5_Click);
+            this.popeButton6.Location = new System.Drawing.Point(566, 12);
+            this.popeButton6.Name = "popeButton6";
+            this.popeButton6.Size = new System.Drawing.Size(84, 41);
+            this.popeButton6.TabIndex = 1;
+            this.popeButton6.Text = "Save";
+            this.popeButton6.UseVisualStyleBackColor = true;
+            this.popeButton6.Click += new System.EventHandler(this.popeButton6_Click);
             // 
             // Form1
             // 
@@ -139,6 +151,7 @@
         private Controls.PopeButton popeButton3;
         private Controls.PopeButton popeButton4;
         private Controls.PopeButton popeButton5;
+        private Controls.PopeButton popeButton6;
     }
 }
 

@@ -66,5 +66,37 @@ namespace WinFormCore
         {
             popeGrid1.DeleteRow();
         }
+
+        private void popeButton6_Click(object sender, EventArgs e)
+        {
+            //using db
+            try
+            {
+                //beginTrans
+                foreach (var item in _viewModel.Where(p => p.RowState != ModelBase.RowStateEnum.None))
+                {
+                    if (item.RowState == ModelBase.RowStateEnum.New)
+                    {
+                        //Insert
+                    }
+                    else if (item.RowState == ModelBase.RowStateEnum.Modified)
+                    {
+                        //Update
+                    }
+                    else if (item.RowState == ModelBase.RowStateEnum.Deleted)
+                    {
+                        //Delete
+                    }
+                }
+                //commit
+
+                //data reload or rowstate reset
+            }
+            catch (Exception ex)
+            {
+                //rollback
+
+            }
+        }
     }
 }
