@@ -28,6 +28,7 @@ namespace WinFormCore
 
             popeGrid1.AddColumn("Col1", "컬럼1", 50, WinFormCore.Controls.PopeGrid.ColType.OnlyNewEdit);
             popeGrid1.AddColumn("Col2", "컬럼2", 50, WinFormCore.Controls.PopeGrid.ColType.Edit);
+            popeGrid1.AddColumn("Col2Copy", "컬럼2동일", 50, WinFormCore.Controls.PopeGrid.ColType.ReadOnly);
             popeGrid1.AddColumn("RowState", "Row상태", 50, WinFormCore.Controls.PopeGrid.ColType.ReadOnly);
 
             _viewModel = TestModel.GetList();

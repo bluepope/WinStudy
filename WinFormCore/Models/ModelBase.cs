@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
+
+using WinFormCore.Attributes;
 
 namespace WinFormCore.Models
 {
@@ -26,15 +30,19 @@ namespace WinFormCore.Models
 
         #region Get Set 날로먹기 구현
         Dictionary<string, object> _storage = new Dictionary<string, object>();
+        Dictionary<string, string[]> _notifyLinkStorage = new Dictionary<string, string[]>();
+
         public T GetValue<T>([CallerMemberName] string propertyName = null)
         {
-            if (_storage.ContainsKey(propertyName))
+            object val;
+
+            if (_storage.TryGetValue(propertyName, out val))
             {
-                return (T)_storage[propertyName];
+                return (T)val;
             }
             else
             {
-                return (T)default;
+                return default;
             }
         }
 
@@ -42,6 +50,32 @@ namespace WinFormCore.Models
         {
             _storage[propertyName] = value;
             RaisePropertyChanged(propertyName);
+
+            string[] notifyLinks;
+            if (_notifyLinkStorage.TryGetValue(propertyName, out notifyLinks) == false)
+            {
+                var list = new List<string>();
+
+                foreach (var property in this.GetType().GetProperties())
+                {
+                    var prop = property.GetCustomAttribute<DependsOnPropertiesAttribute>(false);
+                    if (prop != null && prop.ParentPropertyNames != null && prop.ParentPropertyNames.Contains(propertyName))
+                    {
+                        list.Add(property.Name);
+                    }
+                }
+
+                notifyLinks = list.ToArray();
+                _notifyLinkStorage.Add(propertyName, notifyLinks); 
+            }
+
+            if (notifyLinks != null && notifyLinks.Length > 0)
+            {
+                foreach (var name in notifyLinks)
+                {
+                    RaisePropertyChanged(name);
+                }
+            }
         }
         #endregion
 
@@ -55,11 +89,13 @@ namespace WinFormCore.Models
                 {
                     // TODO: 관리형 상태(관리형 개체)를 삭제합니다.
                     _storage.Clear();
+                    _notifyLinkStorage.Clear();
                 }
 
                 // TODO: 비관리형 리소스(비관리형 개체)를 해제하고 종료자를 재정의합니다.
                 // TODO: 큰 필드를 null로 설정합니다.
                 _storage = null;
+                _notifyLinkStorage = null;
 
                 disposedValue = true;
             }
