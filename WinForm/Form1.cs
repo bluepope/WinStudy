@@ -54,10 +54,10 @@ namespace WinForm
             textBox4.DataBindings.Add("Text", _viewModel, "Text1");
 
             //실시간 업데이트에 대한 테스트
-            Task.Run(() => {
+            Task.Run(async () => {
                 for(int i=0; i < 100; i++)
                 {
-                    Thread.Sleep(100);
+                    await Task.Delay(100);
                     _viewModel.UserList[0].UNIQUE_SEQ = new Random().Next(100);
                 }
             });

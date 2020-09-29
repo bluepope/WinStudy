@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\DependsOnPropertiesAttribute.cs" />
     <Compile Include="Controls\CustomDataGridView.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -69,6 +70,7 @@
     <Compile Include="Form3.Designer.cs">
       <DependentUpon>Form3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\ModelBase.cs" />
     <Compile Include="Models\MUser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
