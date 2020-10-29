@@ -7,26 +7,51 @@ using System.Linq;
 using WinFormCore.Models;
 using System.Reflection;
 using System.Drawing;
+using System.Data;
+using System.Runtime.CompilerServices;
 
 namespace WinFormCore.Controls
 {
     public class PopeGrid : DataGridView
     {
-        public enum ColType
+        public enum DataSourceTypeEnum
+        {
+            DataTable,
+            ModelBase
+        }
+
+        public enum ColTypeEnum
         {
             ReadOnly,
             Edit,
             OnlyNewEdit
         }
 
+        public DataSourceTypeEnum DataSourceType { get; private set; }
+
         public PopeGrid()
         {
             this.AutoGenerateColumns = false;
             this.EditMode = DataGridViewEditMode.EditOnEnter;
-
         }
 
-        public DataGridViewColumn AddColumn(string colName, string headerText, int width, ColType colType)
+        public new object DataSource
+        {
+            get => base.DataSource;
+            set
+            {
+                if (value is DataTable || value.GetType().Name.IndexOf("BindingList") == 0)
+                {
+                    base.DataSource = value;
+                }
+                else
+                {
+                    throw new Exception("지원하지 않는 형식입니다");
+                }
+            }
+        }
+
+        public DataGridViewColumn AddColumn(string colName, string headerText, int width, ColTypeEnum colType)
         {
             var col = new DataGridViewTextBoxColumn();
             col.DataPropertyName = colName;
@@ -36,10 +61,10 @@ namespace WinFormCore.Controls
 
             switch (colType)
             {
-                case ColType.OnlyNewEdit:
+                case ColTypeEnum.OnlyNewEdit:
                     col.ReadOnly = false;
                     break;
-                case ColType.Edit:
+                case ColTypeEnum.Edit:
                     col.ReadOnly = false;
                     break;
                 default:
@@ -106,9 +131,9 @@ namespace WinFormCore.Controls
         private void PopeGrid_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
             var row = this.Rows[e.RowIndex].DataBoundItem as ModelBase;
-            var colType = (ColType)this.Columns[e.ColumnIndex].Tag;
+            var colType = (ColTypeEnum)this.Columns[e.ColumnIndex].Tag;
             
-            if (colType == ColType.OnlyNewEdit)
+            if (colType == ColTypeEnum.OnlyNewEdit)
             {
                 if (row.RowState != ModelBase.RowStateEnum.New)
                 {
