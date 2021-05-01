@@ -41,11 +41,11 @@ namespace ConsoleApp1
 
             //new JsonConvertPrivateSetterTest().Run();
 
-            new XssCheckerTest().Run();
+            //new XssCheckerTest().Run();
+
+            new LinqJoin().Run();
 
             Console.ReadKey();
         }
     }
-
-
 }
